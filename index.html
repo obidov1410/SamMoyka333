@@ -3,1054 +3,913 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Sam Moyka</title>
+<title>Sam Moyka 333</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    min-height: 100vh;
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:#05070a;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================= BACKGROUND ================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:-50%;
     background:
-        radial-gradient(circle at 75% 15%, rgba(0,130,255,.18), transparent 30%),
-        radial-gradient(circle at 20% 70%, rgba(0,80,180,.12), transparent 30%),
-        #02070d;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-x: hidden;
+        radial-gradient(circle at 20% 20%,rgba(0,170,255,.16),transparent 25%),
+        radial-gradient(circle at 80% 70%,rgba(0,255,170,.12),transparent 25%),
+        radial-gradient(circle at 50% 50%,rgba(0,100,255,.08),transparent 35%);
+    animation:bgMove 12s ease-in-out infinite alternate;
+    pointer-events:none;
+    z-index:-2;
 }
 
-/* ===== ANIMATED WATER ===== */
-
-.water {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    overflow: hidden;
+@keyframes bgMove{
+    from{transform:translate(-3%,-2%) scale(1);}
+    to{transform:translate(3%,2%) scale(1.08);}
 }
 
-.drop {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #29a9ff;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #168fff;
-    animation: fall linear infinite;
-    opacity: .7;
+/* ================= PARTICLES ================= */
+
+.particles{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:-1;
 }
 
-@keyframes fall {
-    from {
-        transform: translateY(-20px);
+.particle{
+    position:absolute;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:#00d9ff;
+    box-shadow:0 0 12px #00d9ff;
+    animation:float linear infinite;
+    opacity:.6;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(110vh) translateX(0);
+        opacity:0;
     }
-    to {
-        transform: translateY(110vh);
+    15%{opacity:.8;}
+    85%{opacity:.8;}
+    100%{
+        transform:translateY(-10vh) translateX(80px);
+        opacity:0;
     }
 }
 
-/* ===== TOP ===== */
+/* ================= HEADER ================= */
 
-.top {
-    position: absolute;
-    top: 25px;
-    right: 35px;
-    z-index: 10;
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:75px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(5,8,12,.68);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid rgba(0,210,255,.15);
+    z-index:1000;
 }
 
-.lang {
-    display: flex;
-    border: 1px solid #168fff;
-    border-radius: 30px;
-    overflow: hidden;
-    background: rgba(0,0,0,.45);
-    backdrop-filter: blur(10px);
+.logo{
+    font-size:24px;
+    font-weight:900;
+    letter-spacing:1px;
+    color:white;
 }
 
-.lang button {
-    border: 0;
-    padding: 11px 18px;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
+.logo span{
+    color:#00d9ff;
+    text-shadow:0 0 15px rgba(0,217,255,.8);
 }
 
-.lang button.active {
-    background: #078cff;
+.menu{
+    display:flex;
+    gap:28px;
 }
 
-/* ===== HERO ===== */
-
-.hero {
-    min-height: 430px;
-    padding: 70px 7% 30px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
+.menu a{
+    color:#cbd5dc;
+    text-decoration:none;
+    font-size:14px;
+    transition:.3s;
 }
 
-.hero::after {
-    content: "";
-    position: absolute;
-    right: -100px;
-    top: 40px;
-    width: 600px;
-    height: 300px;
-    border-radius: 50%;
+.menu a:hover{
+    color:#00d9ff;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:100px 20px 60px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:850px;
+    animation:heroIn 1.2s ease forwards;
+}
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(45px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 18px;
+    border:1px solid rgba(0,217,255,.35);
+    background:rgba(0,217,255,.07);
+    border-radius:30px;
+    color:#00d9ff;
+    font-size:13px;
+    margin-bottom:25px;
+    box-shadow:0 0 25px rgba(0,217,255,.08);
+}
+
+.hero h1{
+    font-size:clamp(45px,9vw,95px);
+    font-weight:1000;
+    line-height:.95;
+    letter-spacing:-4px;
+    margin-bottom:25px;
+}
+
+.hero h1 span{
+    color:#00d9ff;
+    text-shadow:
+        0 0 10px rgba(0,217,255,.8),
+        0 0 40px rgba(0,217,255,.35);
+}
+
+.hero p{
+    max-width:600px;
+    margin:auto;
+    color:#9caab5;
+    font-size:17px;
+    line-height:1.7;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:35px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:15px 28px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:800;
+    transition:.35s;
+    cursor:pointer;
+}
+
+.btn-main{
+    color:#001015;
+    background:#00d9ff;
+    box-shadow:0 0 25px rgba(0,217,255,.25);
+}
+
+.btn-main:hover{
+    transform:translateY(-4px);
+    box-shadow:0 0 35px rgba(0,217,255,.5);
+}
+
+.btn-outline{
+    color:white;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.04);
+}
+
+.btn-outline:hover{
+    transform:translateY(-4px);
+    border-color:#00d9ff;
+    color:#00d9ff;
+}
+
+/* ================= SECTION ================= */
+
+section{
+    padding:100px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title small{
+    color:#00d9ff;
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+.section-title h2{
+    font-size:42px;
+    margin-top:10px;
+}
+
+.section-title p{
+    color:#7e8b94;
+    margin-top:12px;
+}
+
+/* ================= FOUR BUTTONS ================= */
+
+.services{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+}
+
+.service{
+    min-height:190px;
+    padding:30px;
+    border-radius:22px;
     background:
-        radial-gradient(ellipse, rgba(20,140,255,.25), transparent 65%);
-    animation: glow 4s ease-in-out infinite alternate;
+        linear-gradient(145deg,
+        rgba(255,255,255,.07),
+        rgba(255,255,255,.025));
+    border:1px solid rgba(255,255,255,.1);
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.4s;
 }
 
-@keyframes glow {
-    from { transform: scale(.9); opacity: .5; }
-    to { transform: scale(1.1); opacity: 1; }
+.service::before{
+    content:"";
+    position:absolute;
+    width:160px;
+    height:160px;
+    right:-70px;
+    top:-70px;
+    border-radius:50%;
+    background:#00d9ff;
+    opacity:.07;
+    transition:.5s;
 }
 
-.logo {
-    font-size: clamp(42px, 7vw, 75px);
-    font-weight: 900;
-    letter-spacing: -3px;
-    position: relative;
-    z-index: 2;
+.service:hover{
+    transform:translateY(-8px);
+    border-color:rgba(0,217,255,.5);
+    box-shadow:0 15px 50px rgba(0,0,0,.35);
 }
 
-.logo span {
-    color: #0796ff;
-    text-shadow: 0 0 25px rgba(0,150,255,.7);
+.service:hover::before{
+    transform:scale(2.3);
+    opacity:.12;
 }
 
-.slogan {
-    margin-top: 5px;
-    letter-spacing: 4px;
-    color: #aaa;
-    font-size: 13px;
+.icon{
+    width:55px;
+    height:55px;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    background:rgba(0,217,255,.09);
+    border:1px solid rgba(0,217,255,.18);
+    margin-bottom:22px;
 }
 
-.hero h1 {
-    margin-top: 55px;
-    font-size: clamp(30px, 5vw, 52px);
+.service h3{
+    font-size:21px;
+    margin-bottom:10px;
 }
 
-.hero h1 span {
-    color: #079cff;
+.service p{
+    color:#87939d;
+    line-height:1.5;
+    font-size:14px;
 }
 
-.hero p {
-    margin-top: 15px;
-    color: #aaa;
-    line-height: 1.7;
-    max-width: 520px;
+/* ================= PRICE ================= */
+
+.price-box{
+    max-width:850px;
+    margin:auto;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
 }
 
-/* ===== CAR ===== */
-
-.car {
-    position: absolute;
-    right: 4%;
-    bottom: 10px;
-    width: 48%;
-    height: 210px;
-    opacity: .85;
+.price{
+    flex:1;
+    min-width:200px;
+    padding:30px;
+    text-align:center;
+    border-radius:20px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.35s;
 }
 
-.car-body {
-    position: absolute;
-    bottom: 35px;
-    width: 100%;
-    height: 110px;
-    border-radius: 90px 130px 30px 30px;
-    background: linear-gradient(145deg,#dcecff,#152333 45%,#05090e);
-    box-shadow:
-        0 0 35px rgba(20,145,255,.5),
-        inset 0 0 30px rgba(255,255,255,.15);
+.price:hover{
+    transform:translateY(-7px);
+    border-color:#00d9ff;
 }
 
-.car-window {
-    position: absolute;
-    left: 35%;
-    top: 10px;
-    width: 38%;
-    height: 65px;
-    border-radius: 40px 70px 5px 5px;
-    background: linear-gradient(135deg,#07131e,#22445d);
-    border: 2px solid #78caff;
+.price h3{
+    color:#aeb9c0;
+    font-size:15px;
+    margin-bottom:15px;
 }
 
-.wheel {
-    position: absolute;
-    bottom: 0;
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: #050505;
-    border: 9px solid #1e2b38;
-    box-shadow: 0 0 15px #008cff;
+.price strong{
+    display:block;
+    font-size:28px;
+    color:#00d9ff;
 }
 
-.wheel.one { left: 18%; }
-.wheel.two { right: 15%; }
+/* ================= ABOUT ================= */
 
-/* water spray */
-
-.spray {
-    position: absolute;
-    right: 10%;
-    top: 15px;
-    width: 260px;
-    height: 170px;
+.about{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
 }
 
-.spray i {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #42baff;
-    box-shadow: 0 0 10px #168fff;
-    animation: spray 2s infinite;
+.about-card{
+    padding:35px;
+    border-radius:22px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
 }
 
-@keyframes spray {
-    0% {
-        transform: translate(0,80px) scale(.3);
-        opacity: 0;
+.about-card h3{
+    margin-bottom:15px;
+}
+
+.about-card p{
+    color:#8d99a2;
+    line-height:1.8;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+    max-width:750px;
+    margin:auto;
+    text-align:center;
+    padding:50px 30px;
+    border-radius:25px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,217,255,.09),
+            rgba(255,255,255,.025)
+        );
+    border:1px solid rgba(0,217,255,.18);
+}
+
+.contact h2{
+    font-size:35px;
+    margin-bottom:15px;
+}
+
+.contact p{
+    color:#89959d;
+    line-height:1.7;
+    margin-bottom:28px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    padding:35px 20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#68747d;
+    font-size:13px;
+}
+
+footer span{
+    color:#00d9ff;
+}
+
+/* ================= POPUP ================= */
+
+.popup-bg{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    backdrop-filter:blur(8px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:2000;
+}
+
+.popup-bg.active{
+    display:flex;
+    animation:fade .3s ease;
+}
+
+@keyframes fade{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+.popup{
+    width:min(500px,100%);
+    padding:35px;
+    border-radius:25px;
+    background:#0b1117;
+    border:1px solid rgba(0,217,255,.25);
+    box-shadow:0 20px 80px rgba(0,0,0,.6);
+    animation:popupIn .35s ease;
+    position:relative;
+}
+
+@keyframes popupIn{
+    from{
+        transform:scale(.85) translateY(20px);
+        opacity:0;
     }
-    30% { opacity: 1; }
-    100% {
-        transform: translate(var(--x),var(--y)) scale(1);
-        opacity: 0;
-    }
-}
-
-/* ===== SECTION ===== */
-
-.section {
-    padding: 15px 6% 70px;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 25px;
-    margin-bottom: 28px;
-}
-
-.section-title::after {
-    content: "";
-    display: block;
-    width: 45px;
-    height: 3px;
-    background: #0095ff;
-    margin: 10px auto;
-    box-shadow: 0 0 15px #0095ff;
-}
-
-/* ===== MENU ===== */
-
-.menu {
-    max-width: 900px;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.menu-card {
-    min-height: 115px;
-    border-radius: 23px;
-    padding: 20px 25px;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    cursor: pointer;
-    border: 1px solid rgba(0,160,255,.5);
-    background: linear-gradient(
-        110deg,
-        rgba(5,40,75,.8),
-        rgba(5,15,30,.65)
-    );
-    backdrop-filter: blur(12px);
-    transition: .35s;
-    position: relative;
-    overflow: hidden;
-}
-
-.menu-card::before {
-    content: "";
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background: rgba(0,150,255,.12);
-    right: -50px;
-    top: -50px;
-}
-
-.menu-card:hover {
-    transform: translateX(8px) scale(1.01);
-    border-color: #20aaff;
-    box-shadow: 0 0 30px rgba(0,145,255,.25);
-}
-
-.menu-card:nth-child(2) {
-    border-color: rgba(0,220,200,.5);
-}
-
-.menu-card:nth-child(3) {
-    border-color: rgba(190,90,255,.6);
-}
-
-.menu-card:nth-child(4) {
-    border-color: rgba(255,170,20,.6);
-}
-
-.icon {
-    min-width: 75px;
-    height: 75px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 35px;
-    border: 1px solid #159cff;
-    background: rgba(0,120,255,.12);
-    box-shadow: 0 0 20px rgba(0,150,255,.3);
-}
-
-.number {
-    font-size: 32px;
-    color: #009bff;
-}
-
-.menu-text h2 {
-    font-size: 19px;
-}
-
-.menu-text p {
-    margin-top: 8px;
-    color: #999;
-    font-size: 14px;
-}
-
-.arrow {
-    margin-left: auto;
-    min-width: 50px;
-    height: 50px;
-    border: 1px solid #0da0ff;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    font-size: 25px;
-    transition: .3s;
-}
-
-.menu-card:hover .arrow {
-    transform: translateX(5px);
-    box-shadow: 0 0 20px #008cff;
-}
-
-/* ===== CONTENT WINDOWS ===== */
-
-.content {
-    max-width: 900px;
-    margin: 25px auto;
-    padding: 30px;
-    border-radius: 25px;
-    background: rgba(4,15,27,.92);
-    border: 1px solid #078fff;
-    box-shadow: 0 0 40px rgba(0,140,255,.2);
-    display: none;
-    animation: open .4s ease;
-}
-
-.content.show {
-    display: block;
-}
-
-@keyframes open {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    to{
+        transform:scale(1) translateY(0);
+        opacity:1;
     }
 }
 
-.close {
-    float: right;
-    border: 1px solid #555;
-    background: transparent;
-    color: white;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
+.close{
+    position:absolute;
+    right:18px;
+    top:15px;
+    font-size:25px;
+    color:#87939c;
+    cursor:pointer;
 }
 
-.steps {
-    margin-top: 25px;
+.popup h2{
+    color:#00d9ff;
+    margin-bottom:15px;
 }
 
-.step {
-    display: flex;
-    gap: 15px;
-    padding: 15px 0;
-    border-bottom: 1px solid #182635;
+.popup p{
+    color:#9ba6ad;
+    line-height:1.7;
 }
 
-.step-num {
-    min-width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #078fff;
-    display: grid;
-    place-items: center;
-    font-weight: bold;
+/* ================= SCROLL ANIMATION ================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(45px);
+    transition:1s ease;
 }
 
-.step h3 {
-    margin-bottom: 5px;
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
 }
 
-.step p {
-    color: #999;
-}
+/* ================= MOBILE ================= */
 
-/* ===== RATING ===== */
+@media(max-width:700px){
 
-.stars {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    margin: 35px 0 15px;
-}
-
-.star {
-    font-size: 45px;
-    color: #555;
-    cursor: pointer;
-    transition: .2s;
-}
-
-.star.active,
-.star:hover {
-    color: #ffd21c;
-    text-shadow: 0 0 15px #ffd21c;
-}
-
-.rating-text {
-    text-align: center;
-    color: #999;
-}
-
-.send-rating {
-    display: block;
-    margin: 25px auto 0;
-    padding: 13px 30px;
-    border: 0;
-    border-radius: 30px;
-    background: #078fff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* ===== FOOTER ===== */
-
-footer {
-    padding: 45px 7%;
-    border-top: 1px solid #142637;
-    background: #01050a;
-}
-
-.footer-title {
-    font-size: 20px;
-    margin-bottom: 25px;
-}
-
-.links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px;
-}
-
-.links a {
-    color: #bbb;
-    text-decoration: none;
-    transition: .2s;
-}
-
-.links a:hover {
-    color: #08a0ff;
-}
-
-.copy {
-    margin-top: 35px;
-    color: #555;
-    font-size: 13px;
-}
-
-/* ===== MOBILE ===== */
-
-@media(max-width:700px) {
-
-    .top {
-        top: 15px;
-        right: 15px;
+    header{
+        height:65px;
+        padding:0 5%;
     }
 
-    .lang button {
-        padding: 8px 10px;
-        font-size: 11px;
+    .logo{
+        font-size:19px;
     }
 
-    .hero {
-        padding: 70px 25px 20px;
-        min-height: 430px;
+    .menu{
+        gap:12px;
     }
 
-    .hero h1 {
-        margin-top: 35px;
+    .menu a{
+        font-size:11px;
     }
 
-    .car {
-        opacity: .3;
-        width: 90%;
-        right: -20%;
+    .hero{
+        padding-top:90px;
     }
 
-    .menu-card {
-        min-height: 105px;
-        padding: 15px;
-        gap: 12px;
+    .hero h1{
+        letter-spacing:-2px;
     }
 
-    .icon {
-        min-width: 55px;
-        width: 55px;
-        height: 55px;
-        font-size: 25px;
+    .hero p{
+        font-size:15px;
     }
 
-    .number {
-        font-size: 22px;
+    section{
+        padding:75px 5%;
     }
 
-    .menu-text h2 {
-        font-size: 14px;
+    .section-title h2{
+        font-size:32px;
     }
 
-    .menu-text p {
-        font-size: 12px;
+    .services{
+        grid-template-columns:1fr;
     }
 
-    .arrow {
-        min-width: 38px;
-        height: 38px;
-        font-size: 18px;
+    .service{
+        min-height:165px;
     }
 
-    .content {
-        padding: 20px;
+    .about{
+        grid-template-columns:1fr;
     }
 }
+
+/* ================= EXTRA ANIMATION ================= */
+
+.logo{
+    animation:logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow{
+    from{
+        text-shadow:0 0 0 rgba(0,217,255,0);
+    }
+    to{
+        text-shadow:0 0 15px rgba(0,217,255,.35);
+    }
+}
+
+.hero h1 span{
+    animation:titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse{
+    0%,100%{filter:brightness(1);}
+    50%{filter:brightness(1.35);}
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- ANIMATED WATER -->
-<div class="water" id="water"></div>
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
 
-<!-- LANGUAGE -->
-<div class="top">
-    <div class="lang">
-        <button id="latinBtn" class="active" onclick="setLanguage('latin')">
-            UZ (LOTIN)
-        </button>
-
-        <button id="cyrillicBtn" onclick="setLanguage('cyrillic')">
-            ЎЗ (КИРИЛЛ)
-        </button>
+<!-- HEADER -->
+<header>
+    <div class="logo">
+        Sam Moyka <span>333</span>
     </div>
-</div>
+
+    <nav class="menu">
+        <a href="#home">Bosh sahifa</a>
+        <a href="#services">Xizmatlar</a>
+        <a href="#price">Narxlar</a>
+        <a href="#contact">Aloqa</a>
+    </nav>
+</header>
+
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="home">
 
-    <div>
-        <div class="logo">
-            SAM <span>MOYKA</span>
-        </div>
+    <div class="hero-content">
 
-        <div class="slogan" data-latin="SIFATLI YUVISH — BIZNING ISHIMIZ!"
-             data-cyrillic="СИФАТЛИ ЮВИШ — БИЗНИНГ ИШИМИЗ!">
-            SIFATLI YUVISH — BIZNING ISHIMIZ!
+        <div class="badge">
+            🚗 PROFESSIONAL AVTOMOYKA
         </div>
 
         <h1>
-            <span data-latin="XUSH KELIBSIZ!"
-                  data-cyrillic="ХУШ КЕЛИБСИЗ!">
-                XUSH KELIBSIZ!
-            </span>
+            Sam Moyka <span>333</span>
         </h1>
 
-        <p data-latin="Sam Moyka xizmatidan foydalanganingiz uchun rahmat. Sifatli xizmat va professional yondashuv — bizning ustunligimiz."
-           data-cyrillic="Сам Мойка хизматидан фойдаланганингиз учун раҳмат. Сифатли хизмат ва профессионал ёндашув — бизнинг устунлигимиз.">
-            Sam Moyka xizmatidan foydalanganingiz uchun rahmat.
-            Sifatli xizmat va professional yondashuv — bizning ustunligimiz.
+        <p>
+            Avtomobilingizga toza ko‘rinish, sifatli xizmat
+            va professional parvarish.
+            Biz bilan mashinangiz yanada chiroyli ko‘rinadi.
         </p>
-    </div>
 
-    <!-- SIMPLE CAR -->
-    <div class="car">
+        <div class="hero-buttons">
+            <a href="#services" class="btn btn-main">
+                Xizmatlarni ko‘rish
+            </a>
 
-        <div class="spray">
-            <i style="--x:80px;--y:-50px"></i>
-            <i style="--x:130px;--y:-80px"></i>
-            <i style="--x:180px;--y:-30px"></i>
-            <i style="--x:220px;--y:-70px"></i>
-            <i style="--x:100px;--y:-110px"></i>
-            <i style="--x:200px;--y:-120px"></i>
-        </div>
-
-        <div class="car-body">
-            <div class="car-window"></div>
-            <div class="wheel one"></div>
-            <div class="wheel two"></div>
+            <a href="#contact" class="btn btn-outline">
+                Bog‘lanish
+            </a>
         </div>
 
     </div>
 
 </section>
 
-<!-- MENU -->
-<section class="section">
 
-    <div class="section-title"
-         data-latin="ASOSIY BO‘LIMLAR"
-         data-cyrillic="АСОСИЙ БЎЛИМЛАР">
-        ASOSIY BO‘LIMLAR
+<!-- SERVICES -->
+<section id="services">
+
+    <div class="section-title reveal">
+        <small>XIZMATLAR</small>
+        <h2>Bizning xizmatlar</h2>
+        <p>Mashinangiz uchun kerakli xizmatni tanlang</p>
     </div>
 
-    <div class="menu">
+    <div class="services">
 
-        <div class="menu-card" onclick="openContent('washing')">
+        <div class="service reveal" onclick="openPopup('Kompleks moyka','Avtomobil tashqi va ichki qismlarini professional tarzda tozalash xizmati.')">
             <div class="icon">🚘</div>
-            <div class="number">01</div>
-            <div class="menu-text">
-                <h2 data-latin="MASHINA YUVISH KETMA-KETLIGI"
-                    data-cyrillic="МАШИНА ЮВИШ КЕТМА-КЕТЛИГИ">
-                    MASHINA YUVISH KETMA-KETLIGI
-                </h2>
-                <p data-latin="Mashina yuvish jarayonini bosqichma-bosqich ko‘ring."
-                   data-cyrillic="Машина ювиш жараёнини босқичма-босқич кўринг.">
-                    Mashina yuvish jarayonini bosqichma-bosqich ko‘ring.
-                </p>
-            </div>
-            <div class="arrow">→</div>
+            <h3>Kompleks moyka</h3>
+            <p>Tashqi va ichki tozalash xizmatlari.</p>
         </div>
 
-        <div class="menu-card" onclick="openContent('products')">
-            <div class="icon">🧴</div>
-            <div class="number">02</div>
-            <div class="menu-text">
-                <h2 data-latin="VOSITALAR VA ULARNING VAZIFALARI"
-                    data-cyrillic="ВОСИТАЛАР ВА УЛАРНИНГ ВАЗИФАЛАРИ">
-                    VOSITALAR VA ULARNING VAZIFALARI
-                </h2>
-                <p data-latin="Har bir vosita nima uchun ishlatilishini biling."
-                   data-cyrillic="Ҳар бир восита нима учун ишлатилишини билинг.">
-                    Har bir vosita nima uchun ishlatilishini biling.
-                </p>
-            </div>
-            <div class="arrow">→</div>
+        <div class="service reveal" onclick="openPopup('Kuzov moykasi','Avtomobil kuzovini sifatli yuvish va tozalash xizmati.')">
+            <div class="icon">💦</div>
+            <h3>Kuzov moykasi</h3>
+            <p>Kuzovni chang va kirlardan tozalash.</p>
         </div>
 
-        <div class="menu-card" onclick="openContent('rating')">
-            <div class="icon">⭐</div>
-            <div class="number">03</div>
-            <div class="menu-text">
-                <h2 data-latin="BAHOLASH"
-                    data-cyrillic="БАҲОЛАШ">
-                    BAHOLASH
-                </h2>
-                <p data-latin="Xizmatimizni 1–5 yulduz bilan baholang."
-                   data-cyrillic="Хизматимизни 1–5 юлдуз билан баҳоланг.">
-                    Xizmatimizni 1–5 yulduz bilan baholang.
-                </p>
-            </div>
-            <div class="arrow">→</div>
+        <div class="service reveal" onclick="openPopup('Salon tozalash','Salon ichidagi chang, kir va boshqa iflosliklarni tozalash xizmati.')">
+            <div class="icon">✨</div>
+            <h3>Salon tozalash</h3>
+            <p>Avtomobil salonini toza va qulay holatga keltiramiz.</p>
         </div>
 
-        <div class="menu-card" onclick="openContent('about')">
-            <div class="icon">ⓘ</div>
-            <div class="number">04</div>
-            <div class="menu-text">
-                <h2 data-latin="BIZ HAQIMIZDA"
-                    data-cyrillic="БИЗ ҲАҚИМИЗДА">
-                    BIZ HAQIMIZDA
-                </h2>
-                <p data-latin="Sam Moyka haqida ma’lumot."
-                   data-cyrillic="Сам Мойка ҳақида маълумот.">
-                    Sam Moyka haqida ma’lumot.
-                </p>
-            </div>
-            <div class="arrow">→</div>
+        <div class="service reveal" onclick="openPopup('Maxsus xizmatlar','Qo‘shimcha avtomobil parvarishi va maxsus tozalash xizmatlari.')">
+            <div class="icon">⚡</div>
+            <h3>Maxsus xizmatlar</h3>
+            <p>Qo‘shimcha professional xizmatlar.</p>
         </div>
-
-    </div>
-
-    <!-- 01 -->
-    <div class="content" id="washing">
-
-        <button class="close" onclick="closeContent('washing')">×</button>
-
-        <h2 data-latin="MASHINA YUVISH KETMA-KETLIGI"
-            data-cyrillic="МАШИНА ЮВИШ КЕТМА-КЕТЛИГИ">
-            MASHINA YUVISH KETMA-KETLIGI
-        </h2>
-
-        <div class="steps">
-
-            <div class="step">
-                <div class="step-num">1</div>
-                <div>
-                    <h3 data-latin="Oldindan chayish"
-                        data-cyrillic="Олдиндан чайиш">
-                        Oldindan chayish
-                    </h3>
-                    <p data-latin="Yuqori bosimli suv bilan dastlabki iflosliklar yuviladi."
-                       data-cyrillic="Юқори босимли сув билан дастлабки ифлосликлар ювилади.">
-                        Yuqori bosimli suv bilan dastlabki iflosliklar yuviladi.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">2</div>
-                <div>
-                    <h3 data-latin="Ko‘piklash"
-                        data-cyrillic="Кўпиклаш">
-                        Ko‘piklash
-                    </h3>
-                    <p data-latin="Maxsus ko‘pik avtomobil yuzasiga surtiladi."
-                       data-cyrillic="Махсус кўпик автомобил юзасига суртилади.">
-                        Maxsus ko‘pik avtomobil yuzasiga surtiladi.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">3</div>
-                <div>
-                    <h3 data-latin="Yuvish"
-                        data-cyrillic="Ювиш">
-                        Yuvish
-                    </h3>
-                    <p data-latin="Yumshoq vosita bilan avtomobil yuviladi."
-                       data-cyrillic="Юмшоқ восита билан автомобил ювилади.">
-                        Yumshoq vosita bilan avtomobil yuviladi.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">4</div>
-                <div>
-                    <h3 data-latin="Chayish"
-                        data-cyrillic="Чайиш">
-                        Chayish
-                    </h3>
-                    <p data-latin="Shampun va ko‘pik to‘liq yuvib tashlanadi."
-                       data-cyrillic="Шампун ва кўпик тўлиқ ювиб ташланади.">
-                        Shampun va ko‘pik to‘liq yuvib tashlanadi.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- 02 -->
-    <div class="content" id="products">
-
-        <button class="close" onclick="closeContent('products')">×</button>
-
-        <h2 data-latin="VOSITALAR VA ULARNING VAZIFALARI"
-            data-cyrillic="ВОСИТАЛАР ВА УЛАРНИНГ ВАЗИФАЛАРИ">
-            VOSITALAR VA ULARNING VAZIFALARI
-        </h2>
-
-        <div class="steps">
-
-            <div class="step">
-                <div class="step-num">1</div>
-                <div>
-                    <h3 data-latin="Faol ko‘pik"
-                        data-cyrillic="Фаол кўпик">
-                        Faol ko‘pik
-                    </h3>
-                    <p data-latin="Kir va yog‘li iflosliklarni yumshatadi."
-                       data-cyrillic="Кир ва ёғли ифлосликларни юмшатади.">
-                        Kir va yog‘li iflosliklarni yumshatadi.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">2</div>
-                <div>
-                    <h3 data-latin="Shampun"
-                        data-cyrillic="Шампун">
-                        Shampun
-                    </h3>
-                    <p data-latin="Avtomobil yuzasini tozalashga yordam beradi."
-                       data-cyrillic="Автомобиль юзасини тозалашга ёрдам беради.">
-                        Avtomobil yuzasini tozalashga yordam beradi.
-                    </p>
-                </div>
-            </div>
-
-            <div class="step">
-                <div class="step-num">3</div>
-                <div>
-                    <h3 data-latin="Quritish vositasi"
-                        data-cyrillic="Қуритиш воситаси">
-                        Quritish vositasi
-                    </h3>
-                    <p data-latin="Suv tomchilarining tezroq qurishiga yordam beradi."
-                       data-cyrillic="Сув томчиларининг тезроқ қуришига ёрдам беради.">
-                        Suv tomchilarining tezroq qurishiga yordam beradi.
-                    </p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- 03 -->
-    <div class="content" id="rating">
-
-        <button class="close" onclick="closeContent('rating')">×</button>
-
-        <h2 style="text-align:center"
-            data-latin="XIZMATIMIZNI BAHOLANG"
-            data-cyrillic="ХИЗМАТИМИЗНИ БАҲОЛАНГ">
-            XIZMATIMIZNI BAHOLANG
-        </h2>
-
-        <div class="stars">
-
-            <span class="star" onclick="rate(1)">★</span>
-            <span class="star" onclick="rate(2)">★</span>
-            <span class="star" onclick="rate(3)">★</span>
-            <span class="star" onclick="rate(4)">★</span>
-            <span class="star" onclick="rate(5)">★</span>
-
-        </div>
-
-        <div class="rating-text" id="ratingText">
-            1–5 yulduzdan birini tanlang
-        </div>
-
-        <button class="send-rating" onclick="sendRating()">
-            Bahoni yuborish
-        </button>
-
-    </div>
-
-    <!-- 04 -->
-    <div class="content" id="about">
-
-        <button class="close" onclick="closeContent('about')">×</button>
-
-        <h2 data-latin="BIZ HAQIMIZDA"
-            data-cyrillic="БИЗ ҲАҚИМИЗДА">
-            BIZ HAQIMIZDA
-        </h2>
-
-        <p style="margin-top:20px; color:#aaa; line-height:1.8;"
-           data-latin="Sam Moyka — avtomobillaringizga sifatli va ehtiyotkorona xizmat ko‘rsatishga intiluvchi avtomoyka."
-           data-cyrillic="Сам Мойка — автомобилларингизга сифатли ва эҳтиёткорона хизмат кўрсатишга интилувчи автомойка.">
-            Sam Moyka — avtomobillaringizga sifatli va ehtiyotkorona xizmat ko‘rsatishga intiluvchi avtomoyka.
-        </p>
 
     </div>
 
 </section>
+
+
+<!-- PRICE -->
+<section id="price">
+
+    <div class="section-title reveal">
+        <small>NARXLAR</small>
+        <h2>Xizmat narxlari</h2>
+        <p>Oddiy va tushunarli narxlar</p>
+    </div>
+
+    <div class="price-box">
+
+        <div class="price reveal">
+            <h3>Yengil avtomobil</h3>
+            <strong>20 000 so‘m</strong>
+        </div>
+
+        <div class="price reveal">
+            <h3>O‘rta avtomobil</h3>
+            <strong>25 000 so‘m</strong>
+        </div>
+
+        <div class="price reveal">
+            <h3>Katta avtomobil</h3>
+            <strong>30 000 so‘m</strong>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section>
+
+    <div class="section-title reveal">
+        <small>BIZ HAQIMIZDA</small>
+        <h2>Nega aynan biz?</h2>
+    </div>
+
+    <div class="about">
+
+        <div class="about-card reveal">
+            <h3>💎 Sifat</h3>
+            <p>
+                Har bir avtomobilga alohida e'tibor beramiz.
+                Maqsadimiz — mijozni mamnun holda kuzatish.
+            </p>
+        </div>
+
+        <div class="about-card reveal">
+            <h3>⚡ Tez xizmat</h3>
+            <p>
+                Vaqtingizni qadrlaymiz.
+                Xizmatlarni imkon qadar tez va sifatli bajaramiz.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+
+    <div class="contact reveal">
+
+        <h2>Sam Moyka <span style="color:#00d9ff">333</span></h2>
+
+        <p>
+            Avtomobilingizni toza va chiroyli holatda ko‘rishni istasangiz,
+            biz bilan bog‘laning.
+        </p>
+
+        <a class="btn btn-main" href="tel:+998000000000">
+            📞 Qo‘ng‘iroq qilish
+        </a>
+
+    </div>
+
+</section>
+
 
 <!-- FOOTER -->
-
 <footer>
-
-    <div class="footer-title"
-         data-latin="BIZ BILAN BOG‘LANING"
-         data-cyrillic="БИЗ БИЛАН БОҒЛАНИНГ">
-        BIZ BILAN BOG‘LANING
-    </div>
-
-    <div class="links">
-
-        <a href="#" target="_blank">📷 Instagram</a>
-
-        <a href="#" target="_blank">✈️ Telegram</a>
-
-        <a href="tel:+998901234567">📞 Telefon</a>
-
-    </div>
-
-    <div class="copy">
-        © 2026 Sam Moyka
-    </div>
-
+    © 2026 <span>Sam Moyka 333</span> — Barcha huquqlar himoyalangan.
 </footer>
+
+
+<!-- POPUP -->
+<div class="popup-bg" id="popupBg" onclick="closePopup(event)">
+
+    <div class="popup">
+
+        <div class="close" onclick="closePopup()">×</div>
+
+        <h2 id="popupTitle">Xizmat</h2>
+
+        <p id="popupText">
+            Xizmat haqida ma'lumot.
+        </p>
+
+    </div>
+
+</div>
 
 
 <script>
 
-/* ===== WATER DROPS ===== */
+/* ================= PARTICLES ================= */
 
-const water = document.getElementById("water");
+const particleBox = document.getElementById("particles");
 
-for(let i = 0; i < 70; i++){
+for(let i = 0; i < 45; i++){
 
-    const drop = document.createElement("span");
+    const p = document.createElement("div");
 
-    drop.className = "drop";
+    p.className = "particle";
 
-    drop.style.left = Math.random() * 100 + "%";
+    p.style.left = Math.random() * 100 + "%";
 
-    drop.style.animationDuration =
-        (2 + Math.random() * 5) + "s";
+    p.style.animationDuration =
+        (7 + Math.random() * 12) + "s";
 
-    drop.style.animationDelay =
-        Math.random() * 5 + "s";
+    p.style.animationDelay =
+        (-Math.random() * 15) + "s";
 
-    drop.style.opacity =
-        .2 + Math.random() * .8;
+    p.style.opacity =
+        .2 + Math.random() * .6;
 
-    water.appendChild(drop);
+    particleBox.appendChild(p);
 }
 
 
-/* ===== OPEN CONTENT ===== */
+/* ================= POPUP ================= */
 
-function openContent(id){
+function openPopup(title,text){
 
-    document.querySelectorAll(".content")
-        .forEach(x => x.classList.remove("show"));
+    document.getElementById("popupTitle").innerText = title;
 
-    const box = document.getElementById(id);
+    document.getElementById("popupText").innerText = text;
 
-    box.classList.add("show");
+    document.getElementById("popupBg").classList.add("active");
 
-    setTimeout(() => {
+    document.body.style.overflow = "hidden";
+}
 
-        box.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+function closePopup(event){
 
-    }, 50);
+    if(
+        !event ||
+        event.target.id === "popupBg" ||
+        event.target.classList.contains("close")
+    ){
+
+        document.getElementById("popupBg")
+            .classList.remove("active");
+
+        document.body.style.overflow = "";
+    }
 }
 
 
-function closeContent(id){
+/* ================= SCROLL REVEAL ================= */
 
-    document.getElementById(id)
-        .classList.remove("show");
+const reveals =
+    document.querySelectorAll(".reveal");
+
+function revealOnScroll(){
+
+    reveals.forEach(el => {
+
+        const windowHeight =
+            window.innerHeight;
+
+        const elementTop =
+            el.getBoundingClientRect().top;
+
+        if(elementTop < windowHeight - 80){
+
+            el.classList.add("show");
+
+        }
+
+    });
 }
 
+window.addEventListener("scroll",revealOnScroll);
 
-/* ===== LANGUAGE ===== */
-
-let currentLanguage = "latin";
-
-function setLanguage(language){
-
-    currentLanguage = language;
-
-    document.querySelectorAll("[data-latin]")
-        .forEach(element => {
-
-            element.textContent =
-                element.getAttribute("data-" + language);
-
-        });
-
-    document.getElementById("latinBtn")
-        .classList.toggle("active", language === "latin");
-
-    document.getElementById("cyrillicBtn")
-        .classList.toggle("active", language === "cyrillic");
-
-    document.documentElement.lang =
-        language === "latin" ? "uz" : "uz-Cyrl";
-
-}
+revealOnScroll();
 
 
-/* ===== RATING ===== */
+/* ================= ESC POPUP ================= */
 
-let selectedRating = 0;
+document.addEventListener("keydown",function(e){
 
-function rate(number){
+    if(e.key === "Escape"){
 
-    selectedRating = number;
+        document
+            .getElementById("popupBg")
+            .classList.remove("active");
 
-    document.querySelectorAll(".star")
-        .forEach((star, index) => {
+        document.body.style.overflow = "";
 
-            star.classList.toggle(
-                "active",
-                index < number
-            );
-
-        });
-
-    document.getElementById("ratingText")
-        .textContent =
-        number + " / 5 yulduz tanlandi";
-}
-
-
-function sendRating(){
-
-    if(selectedRating === 0){
-
-        alert(
-            currentLanguage === "latin"
-            ? "Avval bahoni tanlang."
-            : "Аввал баҳони танланг."
-        );
-
-        return;
     }
 
-    /*
-      TELEGRAM ULASHNI KEYINGI BOSQICHDA QILAMIZ.
-      BOT TOKENINI BU YERGA YOZISH MUMKIN EMAS.
-    */
+});
 
-    alert(
-        currentLanguage === "latin"
-        ? "Rahmat! Bahoyingiz qabul qilindi."
-        : "Раҳмат! Баҳонгиз қабул қилинди."
-    );
-}
+
+/* ================= SMOOTH MENU ================= */
+
+document.querySelectorAll(".menu a").forEach(link => {
+
+    link.addEventListener("click",function(){
+
+        document
+            .querySelectorAll(".menu a")
+            .forEach(a => a.classList.remove("active"));
+
+        this.classList.add("active");
+
+    });
+
+});
 
 </script>
 
