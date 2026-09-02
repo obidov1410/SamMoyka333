@@ -17,67 +17,92 @@ html{
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#05070a;
-    color:white;
+    min-height:100vh;
+    background:#050505;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
     overflow-x:hidden;
 }
 
-/* ================= BACKGROUND ================= */
+/* ===== BACKGROUND ===== */
 
-body::before{
-    content:"";
-    position:fixed;
-    inset:-50%;
-    background:
-        radial-gradient(circle at 20% 20%,rgba(0,170,255,.16),transparent 25%),
-        radial-gradient(circle at 80% 70%,rgba(0,255,170,.12),transparent 25%),
-        radial-gradient(circle at 50% 50%,rgba(0,100,255,.08),transparent 35%);
-    animation:bgMove 12s ease-in-out infinite alternate;
-    pointer-events:none;
-    z-index:-2;
-}
-
-@keyframes bgMove{
-    from{transform:translate(-3%,-2%) scale(1);}
-    to{transform:translate(3%,2%) scale(1.08);}
-}
-
-/* ================= PARTICLES ================= */
-
-.particles{
+.bg{
     position:fixed;
     inset:0;
     overflow:hidden;
-    pointer-events:none;
-    z-index:-1;
+    z-index:-3;
+    background:
+        radial-gradient(circle at 50% 35%,#18242a 0%,#080b0d 38%,#020303 75%);
 }
 
-.particle{
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    filter:blur(90px);
+    opacity:.25;
+    animation:moveGlow 9s ease-in-out infinite alternate;
+}
+
+.glow.one{
+    background:#00eaff;
+    top:-200px;
+    left:-180px;
+}
+
+.glow.two{
+    background:#0066ff;
+    right:-220px;
+    bottom:-220px;
+    animation-delay:2s;
+}
+
+@keyframes moveGlow{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(100px,50px) scale(1.25);
+    }
+}
+
+/* ===== PARTICLES ===== */
+
+.particles{
+    position:absolute;
+    inset:0;
+}
+
+.dot{
     position:absolute;
     width:3px;
     height:3px;
     border-radius:50%;
-    background:#00d9ff;
-    box-shadow:0 0 12px #00d9ff;
-    animation:float linear infinite;
-    opacity:.6;
+    background:#00eaff;
+    box-shadow:0 0 12px #00eaff;
+    opacity:0;
+    animation:rise linear infinite;
 }
 
-@keyframes float{
+@keyframes rise{
     0%{
-        transform:translateY(110vh) translateX(0);
+        transform:translateY(105vh) scale(.5);
         opacity:0;
     }
-    15%{opacity:.8;}
-    85%{opacity:.8;}
+    15%{
+        opacity:.7;
+    }
+    80%{
+        opacity:.4;
+    }
     100%{
-        transform:translateY(-10vh) translateX(80px);
+        transform:translateY(-10vh) scale(1.2);
         opacity:0;
     }
 }
 
-/* ================= HEADER ================= */
+/* ===== HEADER ===== */
 
 header{
     position:fixed;
@@ -87,60 +112,141 @@ header{
     height:75px;
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    background:rgba(5,8,12,.68);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid rgba(0,210,255,.15);
-    z-index:1000;
+    justify-content:center;
+    z-index:100;
+    background:rgba(0,0,0,.28);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.06);
 }
 
 .logo{
-    font-size:24px;
+    font-size:23px;
     font-weight:900;
-    letter-spacing:1px;
-    color:white;
+    letter-spacing:2px;
+    animation:logoAppear 1s ease;
 }
 
 .logo span{
-    color:#00d9ff;
-    text-shadow:0 0 15px rgba(0,217,255,.8);
+    color:#00eaff;
+    text-shadow:
+        0 0 8px #00eaff,
+        0 0 25px rgba(0,234,255,.6);
 }
 
-.menu{
-    display:flex;
-    gap:28px;
+@keyframes logoAppear{
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
 }
 
-.menu a{
-    color:#cbd5dc;
-    text-decoration:none;
-    font-size:14px;
-    transition:.3s;
-}
+/* ===== HOME ===== */
 
-.menu a:hover{
-    color:#00d9ff;
-}
-
-/* ================= HERO ================= */
-
-.hero{
+.home{
     min-height:100vh;
     display:flex;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
+    padding:100px 20px 50px;
     text-align:center;
-    padding:100px 20px 60px;
+}
+
+/* ===== MAIN LOGO ===== */
+
+.main-logo{
     position:relative;
+    margin-bottom:35px;
+    animation:mainLogo 1.4s cubic-bezier(.2,.8,.2,1);
 }
 
-.hero-content{
-    max-width:850px;
-    animation:heroIn 1.2s ease forwards;
+.main-logo::before{
+    content:"";
+    position:absolute;
+    inset:-35px;
+    border-radius:50%;
+    background:rgba(0,234,255,.08);
+    filter:blur(25px);
+    animation:pulse 3s ease-in-out infinite;
 }
 
-@keyframes heroIn{
+.main-logo h1{
+    position:relative;
+    font-size:clamp(43px,10vw,88px);
+    line-height:.95;
+    font-weight:1000;
+    letter-spacing:-4px;
+}
+
+.main-logo h1 span{
+    color:#00eaff;
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 35px rgba(0,234,255,.6),
+        0 0 70px rgba(0,234,255,.25);
+}
+
+@keyframes mainLogo{
+    0%{
+        opacity:0;
+        transform:scale(.7) translateY(35px);
+        filter:blur(12px);
+    }
+    100%{
+        opacity:1;
+        transform:scale(1) translateY(0);
+        filter:blur(0);
+    }
+}
+
+@keyframes pulse{
+    0%,100%{
+        transform:scale(.85);
+        opacity:.5;
+    }
+    50%{
+        transform:scale(1.15);
+        opacity:1;
+    }
+}
+
+/* ===== SUBTITLE ===== */
+
+.subtitle{
+    color:#89969b;
+    font-size:14px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:38px;
+    animation:subtitleIn 1.5s .25s both;
+}
+
+@keyframes subtitleIn{
+    from{
+        opacity:0;
+        letter-spacing:12px;
+    }
+    to{
+        opacity:1;
+        letter-spacing:4px;
+    }
+}
+
+/* ===== BUTTONS ===== */
+
+.buttons{
+    width:min(380px,90vw);
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+    animation:buttonsIn 1.2s .45s both;
+}
+
+@keyframes buttonsIn{
     from{
         opacity:0;
         transform:translateY(45px);
@@ -151,763 +257,441 @@ header{
     }
 }
 
-.badge{
-    display:inline-block;
-    padding:9px 18px;
-    border:1px solid rgba(0,217,255,.35);
-    background:rgba(0,217,255,.07);
-    border-radius:30px;
-    color:#00d9ff;
-    font-size:13px;
-    margin-bottom:25px;
-    box-shadow:0 0 25px rgba(0,217,255,.08);
-}
-
-.hero h1{
-    font-size:clamp(45px,9vw,95px);
-    font-weight:1000;
-    line-height:.95;
-    letter-spacing:-4px;
-    margin-bottom:25px;
-}
-
-.hero h1 span{
-    color:#00d9ff;
-    text-shadow:
-        0 0 10px rgba(0,217,255,.8),
-        0 0 40px rgba(0,217,255,.35);
-}
-
-.hero p{
-    max-width:600px;
-    margin:auto;
-    color:#9caab5;
-    font-size:17px;
-    line-height:1.7;
-}
-
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin-top:35px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    padding:15px 28px;
-    border-radius:12px;
-    text-decoration:none;
-    font-weight:800;
-    transition:.35s;
-    cursor:pointer;
-}
-
-.btn-main{
-    color:#001015;
-    background:#00d9ff;
-    box-shadow:0 0 25px rgba(0,217,255,.25);
-}
-
-.btn-main:hover{
-    transform:translateY(-4px);
-    box-shadow:0 0 35px rgba(0,217,255,.5);
-}
-
-.btn-outline{
-    color:white;
-    border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.04);
-}
-
-.btn-outline:hover{
-    transform:translateY(-4px);
-    border-color:#00d9ff;
-    color:#00d9ff;
-}
-
-/* ================= SECTION ================= */
-
-section{
-    padding:100px 7%;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.section-title small{
-    color:#00d9ff;
-    font-weight:800;
-    letter-spacing:3px;
-}
-
-.section-title h2{
-    font-size:42px;
-    margin-top:10px;
-}
-
-.section-title p{
-    color:#7e8b94;
-    margin-top:12px;
-}
-
-/* ================= FOUR BUTTONS ================= */
-
-.services{
-    max-width:1000px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-
-.service{
-    min-height:190px;
-    padding:30px;
-    border-radius:22px;
-    background:
-        linear-gradient(145deg,
-        rgba(255,255,255,.07),
-        rgba(255,255,255,.025));
-    border:1px solid rgba(255,255,255,.1);
+.menu-btn{
     position:relative;
+    width:100%;
+    min-height:62px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.11);
+    background:rgba(255,255,255,.045);
+    color:#fff;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 22px;
     overflow:hidden;
     cursor:pointer;
-    transition:.4s;
+    backdrop-filter:blur(12px);
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
 }
 
-.service::before{
+.menu-btn::before{
     content:"";
     position:absolute;
-    width:160px;
-    height:160px;
-    right:-70px;
-    top:-70px;
-    border-radius:50%;
-    background:#00d9ff;
-    opacity:.07;
-    transition:.5s;
+    top:0;
+    left:-120%;
+    width:80%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(0,234,255,.18),
+        transparent
+    );
+    transform:skewX(-20deg);
+    transition:.65s;
 }
 
-.service:hover{
-    transform:translateY(-8px);
-    border-color:rgba(0,217,255,.5);
-    box-shadow:0 15px 50px rgba(0,0,0,.35);
+.menu-btn:hover::before{
+    left:130%;
 }
 
-.service:hover::before{
-    transform:scale(2.3);
-    opacity:.12;
+.menu-btn:hover{
+    transform:translateX(7px);
+    border-color:rgba(0,234,255,.65);
+    background:rgba(0,234,255,.07);
+    box-shadow:
+        0 0 25px rgba(0,234,255,.1),
+        inset 0 0 20px rgba(0,234,255,.03);
+}
+
+.menu-btn:active{
+    transform:scale(.97);
+}
+
+.btn-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    position:relative;
+    z-index:2;
 }
 
 .icon{
-    width:55px;
-    height:55px;
-    border-radius:15px;
+    width:37px;
+    height:37px;
+    border-radius:11px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:25px;
-    background:rgba(0,217,255,.09);
-    border:1px solid rgba(0,217,255,.18);
-    margin-bottom:22px;
+    background:rgba(0,234,255,.08);
+    border:1px solid rgba(0,234,255,.18);
+    font-size:17px;
+    transition:.3s;
 }
 
-.service h3{
-    font-size:21px;
-    margin-bottom:10px;
+.menu-btn:hover .icon{
+    background:#00eaff;
+    color:#001015;
+    transform:rotate(-5deg) scale(1.08);
 }
 
-.service p{
-    color:#87939d;
-    line-height:1.5;
-    font-size:14px;
-}
-
-/* ================= PRICE ================= */
-
-.price-box{
-    max-width:850px;
-    margin:auto;
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    flex-wrap:wrap;
-}
-
-.price{
-    flex:1;
-    min-width:200px;
-    padding:30px;
-    text-align:center;
-    border-radius:20px;
-    background:rgba(255,255,255,.045);
-    border:1px solid rgba(255,255,255,.1);
-    transition:.35s;
-}
-
-.price:hover{
-    transform:translateY(-7px);
-    border-color:#00d9ff;
-}
-
-.price h3{
-    color:#aeb9c0;
+.btn-text{
     font-size:15px;
-    margin-bottom:15px;
+    font-weight:700;
+    letter-spacing:.3px;
 }
 
-.price strong{
-    display:block;
-    font-size:28px;
-    color:#00d9ff;
-}
-
-/* ================= ABOUT ================= */
-
-.about{
-    max-width:1000px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:30px;
-}
-
-.about-card{
-    padding:35px;
-    border-radius:22px;
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.about-card h3{
-    margin-bottom:15px;
-}
-
-.about-card p{
-    color:#8d99a2;
-    line-height:1.8;
-}
-
-/* ================= CONTACT ================= */
-
-.contact{
-    max-width:750px;
-    margin:auto;
-    text-align:center;
-    padding:50px 30px;
-    border-radius:25px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,217,255,.09),
-            rgba(255,255,255,.025)
-        );
-    border:1px solid rgba(0,217,255,.18);
-}
-
-.contact h2{
-    font-size:35px;
-    margin-bottom:15px;
-}
-
-.contact p{
-    color:#89959d;
-    line-height:1.7;
-    margin-bottom:28px;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-    text-align:center;
-    padding:35px 20px;
-    border-top:1px solid rgba(255,255,255,.08);
-    color:#68747d;
-    font-size:13px;
-}
-
-footer span{
-    color:#00d9ff;
-}
-
-/* ================= POPUP ================= */
-
-.popup-bg{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.7);
-    backdrop-filter:blur(8px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:2000;
-}
-
-.popup-bg.active{
-    display:flex;
-    animation:fade .3s ease;
-}
-
-@keyframes fade{
-    from{opacity:0;}
-    to{opacity:1;}
-}
-
-.popup{
-    width:min(500px,100%);
-    padding:35px;
-    border-radius:25px;
-    background:#0b1117;
-    border:1px solid rgba(0,217,255,.25);
-    box-shadow:0 20px 80px rgba(0,0,0,.6);
-    animation:popupIn .35s ease;
+.arrow{
     position:relative;
+    z-index:2;
+    color:#617076;
+    font-size:21px;
+    transition:.3s;
 }
 
-@keyframes popupIn{
+.menu-btn:hover .arrow{
+    color:#00eaff;
+    transform:translateX(5px);
+}
+
+/* ===== BOTTOM ===== */
+
+.bottom{
+    position:absolute;
+    bottom:25px;
+    color:#4e5b60;
+    font-size:11px;
+    letter-spacing:2px;
+    animation:bottomIn 2s 1s both;
+}
+
+@keyframes bottomIn{
     from{
-        transform:scale(.85) translateY(20px);
         opacity:0;
     }
     to{
-        transform:scale(1) translateY(0);
         opacity:1;
     }
 }
 
-.close{
-    position:absolute;
-    right:18px;
-    top:15px;
-    font-size:25px;
-    color:#87939c;
-    cursor:pointer;
+/* ===== PAGES ===== */
+
+.page{
+    min-height:100vh;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:100px 20px;
 }
 
-.popup h2{
-    color:#00d9ff;
+.page.active{
+    display:flex;
+    animation:pageIn .5s ease;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.page-box{
+    width:min(700px,92vw);
+    padding:45px 30px;
+    border-radius:25px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.1);
+    backdrop-filter:blur(18px);
+    text-align:center;
+}
+
+.page-box h2{
+    font-size:35px;
     margin-bottom:15px;
 }
 
-.popup p{
-    color:#9ba6ad;
+.page-box h2 span{
+    color:#00eaff;
+}
+
+.page-box p{
+    color:#879398;
     line-height:1.7;
 }
 
-/* ================= SCROLL ANIMATION ================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(45px);
-    transition:1s ease;
+.back{
+    display:inline-flex;
+    margin-top:28px;
+    padding:13px 23px;
+    border-radius:12px;
+    background:rgba(0,234,255,.08);
+    border:1px solid rgba(0,234,255,.25);
+    color:#00eaff;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.reveal.show{
-    opacity:1;
-    transform:translateY(0);
+.back:hover{
+    background:rgba(0,234,255,.15);
+    transform:translateY(-3px);
 }
 
-/* ================= MOBILE ================= */
+/* ===== MOBILE ===== */
 
-@media(max-width:700px){
+@media(max-width:600px){
 
     header{
         height:65px;
-        padding:0 5%;
     }
 
     .logo{
         font-size:19px;
     }
 
-    .menu{
-        gap:12px;
-    }
-
-    .menu a{
-        font-size:11px;
-    }
-
-    .hero{
+    .home{
         padding-top:90px;
     }
 
-    .hero h1{
+    .main-logo{
+        margin-bottom:25px;
+    }
+
+    .main-logo h1{
         letter-spacing:-2px;
     }
 
-    .hero p{
-        font-size:15px;
+    .subtitle{
+        font-size:10px;
+        letter-spacing:3px;
+        margin-bottom:30px;
     }
 
-    section{
-        padding:75px 5%;
+    .buttons{
+        width:92vw;
+        max-width:360px;
     }
 
-    .section-title h2{
-        font-size:32px;
+    .menu-btn{
+        min-height:59px;
     }
 
-    .services{
-        grid-template-columns:1fr;
-    }
-
-    .service{
-        min-height:165px;
-    }
-
-    .about{
-        grid-template-columns:1fr;
+    .page-box{
+        padding:35px 22px;
     }
 }
-
-/* ================= EXTRA ANIMATION ================= */
-
-.logo{
-    animation:logoGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes logoGlow{
-    from{
-        text-shadow:0 0 0 rgba(0,217,255,0);
-    }
-    to{
-        text-shadow:0 0 15px rgba(0,217,255,.35);
-    }
-}
-
-.hero h1 span{
-    animation:titlePulse 3s ease-in-out infinite;
-}
-
-@keyframes titlePulse{
-    0%,100%{filter:brightness(1);}
-    50%{filter:brightness(1.35);}
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- PARTICLES -->
-<div class="particles" id="particles"></div>
+<!-- BACKGROUND -->
+<div class="bg">
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+    <div class="particles" id="particles"></div>
+</div>
 
 <!-- HEADER -->
 <header>
     <div class="logo">
         Sam Moyka <span>333</span>
     </div>
-
-    <nav class="menu">
-        <a href="#home">Bosh sahifa</a>
-        <a href="#services">Xizmatlar</a>
-        <a href="#price">Narxlar</a>
-        <a href="#contact">Aloqa</a>
-    </nav>
 </header>
 
 
-<!-- HERO -->
-<section class="hero" id="home">
+<!-- HOME -->
+<main class="home" id="home">
 
-    <div class="hero-content">
-
-        <div class="badge">
-            🚗 PROFESSIONAL AVTOMOYKA
-        </div>
-
+    <div class="main-logo">
         <h1>
-            Sam Moyka <span>333</span>
+            SAM MOYKA<br>
+            <span>333</span>
         </h1>
+    </div>
 
+    <div class="subtitle">
+        Zamonaviy • Tez • Qulay
+    </div>
+
+    <div class="buttons">
+
+        <button class="menu-btn" onclick="openPage('wash')">
+            <div class="btn-left">
+                <div class="icon">🚗</div>
+                <div class="btn-text">SAM MOYKA</div>
+            </div>
+            <div class="arrow">›</div>
+        </button>
+
+        <button class="menu-btn" onclick="openPage('how')">
+            <div class="btn-left">
+                <div class="icon">⚡</div>
+                <div class="btn-text">QANDAY ISHLAYDI?</div>
+            </div>
+            <div class="arrow">›</div>
+        </button>
+
+        <button class="menu-btn" onclick="openPage('info')">
+            <div class="btn-left">
+                <div class="icon">ℹ</div>
+                <div class="btn-text">MA'LUMOT</div>
+            </div>
+            <div class="arrow">›</div>
+        </button>
+
+        <button class="menu-btn" onclick="openPage('contact')">
+            <div class="btn-left">
+                <div class="icon">📍</div>
+                <div class="btn-text">MANZIL</div>
+            </div>
+            <div class="arrow">›</div>
+        </button>
+
+    </div>
+
+    <div class="bottom">
+        SAM MOYKA 333
+    </div>
+
+</main>
+
+
+<!-- PAGE 1 -->
+<section class="page" id="wash">
+    <div class="page-box">
+        <h2>Sam Moyka <span>333</span></h2>
         <p>
-            Avtomobilingizga toza ko‘rinish, sifatli xizmat
-            va professional parvarish.
-            Biz bilan mashinangiz yanada chiroyli ko‘rinadi.
+            Avtomobilingizni o‘zingiz yuvishingiz uchun
+            qulay va zamonaviy moyka.
         </p>
-
-        <div class="hero-buttons">
-            <a href="#services" class="btn btn-main">
-                Xizmatlarni ko‘rish
-            </a>
-
-            <a href="#contact" class="btn btn-outline">
-                Bog‘lanish
-            </a>
-        </div>
-
+        <div class="back" onclick="goHome()">← Bosh sahifa</div>
     </div>
-
 </section>
 
 
-<!-- SERVICES -->
-<section id="services">
-
-    <div class="section-title reveal">
-        <small>XIZMATLAR</small>
-        <h2>Bizning xizmatlar</h2>
-        <p>Mashinangiz uchun kerakli xizmatni tanlang</p>
-    </div>
-
-    <div class="services">
-
-        <div class="service reveal" onclick="openPopup('Kompleks moyka','Avtomobil tashqi va ichki qismlarini professional tarzda tozalash xizmati.')">
-            <div class="icon">🚘</div>
-            <h3>Kompleks moyka</h3>
-            <p>Tashqi va ichki tozalash xizmatlari.</p>
-        </div>
-
-        <div class="service reveal" onclick="openPopup('Kuzov moykasi','Avtomobil kuzovini sifatli yuvish va tozalash xizmati.')">
-            <div class="icon">💦</div>
-            <h3>Kuzov moykasi</h3>
-            <p>Kuzovni chang va kirlardan tozalash.</p>
-        </div>
-
-        <div class="service reveal" onclick="openPopup('Salon tozalash','Salon ichidagi chang, kir va boshqa iflosliklarni tozalash xizmati.')">
-            <div class="icon">✨</div>
-            <h3>Salon tozalash</h3>
-            <p>Avtomobil salonini toza va qulay holatga keltiramiz.</p>
-        </div>
-
-        <div class="service reveal" onclick="openPopup('Maxsus xizmatlar','Qo‘shimcha avtomobil parvarishi va maxsus tozalash xizmatlari.')">
-            <div class="icon">⚡</div>
-            <h3>Maxsus xizmatlar</h3>
-            <p>Qo‘shimcha professional xizmatlar.</p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- PRICE -->
-<section id="price">
-
-    <div class="section-title reveal">
-        <small>NARXLAR</small>
-        <h2>Xizmat narxlari</h2>
-        <p>Oddiy va tushunarli narxlar</p>
-    </div>
-
-    <div class="price-box">
-
-        <div class="price reveal">
-            <h3>Yengil avtomobil</h3>
-            <strong>20 000 so‘m</strong>
-        </div>
-
-        <div class="price reveal">
-            <h3>O‘rta avtomobil</h3>
-            <strong>25 000 so‘m</strong>
-        </div>
-
-        <div class="price reveal">
-            <h3>Katta avtomobil</h3>
-            <strong>30 000 so‘m</strong>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ABOUT -->
-<section>
-
-    <div class="section-title reveal">
-        <small>BIZ HAQIMIZDA</small>
-        <h2>Nega aynan biz?</h2>
-    </div>
-
-    <div class="about">
-
-        <div class="about-card reveal">
-            <h3>💎 Sifat</h3>
-            <p>
-                Har bir avtomobilga alohida e'tibor beramiz.
-                Maqsadimiz — mijozni mamnun holda kuzatish.
-            </p>
-        </div>
-
-        <div class="about-card reveal">
-            <h3>⚡ Tez xizmat</h3>
-            <p>
-                Vaqtingizni qadrlaymiz.
-                Xizmatlarni imkon qadar tez va sifatli bajaramiz.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- CONTACT -->
-<section id="contact">
-
-    <div class="contact reveal">
-
-        <h2>Sam Moyka <span style="color:#00d9ff">333</span></h2>
-
+<!-- PAGE 2 -->
+<section class="page" id="how">
+    <div class="page-box">
+        <h2>Qanday <span>ishlaydi?</span></h2>
         <p>
-            Avtomobilingizni toza va chiroyli holatda ko‘rishni istasangiz,
-            biz bilan bog‘laning.
+            Kerakli joyni tanlang va moyka jarayonini
+            o‘zingiz boshqaring.
         </p>
-
-        <a class="btn btn-main" href="tel:+998000000000">
-            📞 Qo‘ng‘iroq qilish
-        </a>
-
+        <div class="back" onclick="goHome()">← Bosh sahifa</div>
     </div>
-
 </section>
 
 
-<!-- FOOTER -->
-<footer>
-    © 2026 <span>Sam Moyka 333</span> — Barcha huquqlar himoyalangan.
-</footer>
-
-
-<!-- POPUP -->
-<div class="popup-bg" id="popupBg" onclick="closePopup(event)">
-
-    <div class="popup">
-
-        <div class="close" onclick="closePopup()">×</div>
-
-        <h2 id="popupTitle">Xizmat</h2>
-
-        <p id="popupText">
-            Xizmat haqida ma'lumot.
+<!-- PAGE 3 -->
+<section class="page" id="info">
+    <div class="page-box">
+        <h2>Sam Moyka <span>333</span></h2>
+        <p>
+            Zamonaviy o‘z-o‘ziga xizmat ko‘rsatadigan
+            avtomoyka.
         </p>
-
+        <div class="back" onclick="goHome()">← Bosh sahifa</div>
     </div>
+</section>
 
-</div>
+
+<!-- PAGE 4 -->
+<section class="page" id="contact">
+    <div class="page-box">
+        <h2><span>Manzil</span></h2>
+        <p>
+            Sam Moyka 333 manzili shu yerda ko‘rsatiladi.
+        </p>
+        <div class="back" onclick="goHome()">← Bosh sahifa</div>
+    </div>
+</section>
 
 
 <script>
 
-/* ================= PARTICLES ================= */
+/* ===== PARTICLES ===== */
 
-const particleBox = document.getElementById("particles");
+const particles = document.getElementById("particles");
 
-for(let i = 0; i < 45; i++){
+for(let i = 0; i < 55; i++){
 
-    const p = document.createElement("div");
+    const dot = document.createElement("div");
 
-    p.className = "particle";
+    dot.className = "dot";
 
-    p.style.left = Math.random() * 100 + "%";
+    dot.style.left = Math.random() * 100 + "%";
 
-    p.style.animationDuration =
-        (7 + Math.random() * 12) + "s";
+    dot.style.animationDuration =
+        (6 + Math.random() * 12) + "s";
 
-    p.style.animationDelay =
+    dot.style.animationDelay =
         (-Math.random() * 15) + "s";
 
-    p.style.opacity =
-        .2 + Math.random() * .6;
+    dot.style.transform =
+        `scale(${.5 + Math.random()})`;
 
-    particleBox.appendChild(p);
+    particles.appendChild(dot);
 }
 
 
-/* ================= POPUP ================= */
+/* ===== PAGE SYSTEM ===== */
 
-function openPopup(title,text){
+const home = document.getElementById("home");
 
-    document.getElementById("popupTitle").innerText = title;
+function openPage(id){
 
-    document.getElementById("popupText").innerText = text;
+    home.style.display = "none";
 
-    document.getElementById("popupBg").classList.add("active");
+    document.querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
 
-    document.body.style.overflow = "hidden";
-}
+    const page = document.getElementById(id);
 
-function closePopup(event){
+    page.classList.add("active");
 
-    if(
-        !event ||
-        event.target.id === "popupBg" ||
-        event.target.classList.contains("close")
-    ){
-
-        document.getElementById("popupBg")
-            .classList.remove("active");
-
-        document.body.style.overflow = "";
-    }
-}
-
-
-/* ================= SCROLL REVEAL ================= */
-
-const reveals =
-    document.querySelectorAll(".reveal");
-
-function revealOnScroll(){
-
-    reveals.forEach(el => {
-
-        const windowHeight =
-            window.innerHeight;
-
-        const elementTop =
-            el.getBoundingClientRect().top;
-
-        if(elementTop < windowHeight - 80){
-
-            el.classList.add("show");
-
-        }
-
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
     });
 }
 
-window.addEventListener("scroll",revealOnScroll);
 
-revealOnScroll();
+function goHome(){
+
+    document.querySelectorAll(".page")
+        .forEach(page => {
+            page.classList.remove("active");
+        });
+
+    home.style.display = "flex";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
 
 
-/* ================= ESC POPUP ================= */
+/* ===== ESC ===== */
 
 document.addEventListener("keydown",function(e){
 
     if(e.key === "Escape"){
-
-        document
-            .getElementById("popupBg")
-            .classList.remove("active");
-
-        document.body.style.overflow = "";
-
+        goHome();
     }
-
-});
-
-
-/* ================= SMOOTH MENU ================= */
-
-document.querySelectorAll(".menu a").forEach(link => {
-
-    link.addEventListener("click",function(){
-
-        document
-            .querySelectorAll(".menu a")
-            .forEach(a => a.classList.remove("active"));
-
-        this.classList.add("active");
-
-    });
 
 });
 
