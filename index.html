@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoWash 333</title>
-    <!-- FontAwesome belgilari uchun -->
+    <title>EcoWash 333 - O'z-o'ziga xizmat ko'rsatish avtomoykasi</title>
+    <!-- FontAwesome belgilari -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary-color: #0077b6;
+            --secondary-color: #00b4d8;
+            --accent-color: #ffb703;
+            --dark-color: #1d3557;
+            --light-color: #f8f9fa;
+            --white: #ffffff;
+            --gray: #6c757d;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -20,189 +34,508 @@
             line-height: 1.6;
         }
 
+        /* HEADER & NAVIGATION */
         header {
-            background: #0077b6;
-            color: white;
-            padding: 1rem 2rem;
+            background: var(--dark-color);
+            color: var(--white);
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary-color);
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
         }
 
         nav a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
-            margin-left: 20px;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
 
         nav a:hover {
-            color: #caf0f8;
+            color: var(--accent-color);
+            background: rgba(255,255,255,0.1);
         }
 
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .hero .btn-hero {
+            background: var(--secondary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 30px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,180,216,0.4);
+        }
+
+        .hero .btn-hero:hover {
+            background: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        /* CONTAINER & SECTIONS */
         .container {
-            max-width: 900px;
-            margin: 2rem auto;
+            max-width: 1100px;
+            margin: 3rem auto;
             padding: 0 20px;
         }
 
         section {
-            background: white;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: var(--white);
+            padding: 3rem 2rem;
+            margin-bottom: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
-        h2 {
-            color: #0077b6;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #0077b6;
+        .section-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            position: relative;
             display: inline-block;
-            padding-bottom: 5px;
+            padding-bottom: 10px;
         }
 
-        /* Baholash (Rating) uslubi */
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+        }
+
+        /* BIZ HAQIMIZDA */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+            color: #555;
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .about-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .about-features i {
+            color: var(--primary-color);
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* XIZMATLAR VA TARIFLAR */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .service-card {
+            background: #f8fbfe;
+            border: 1px solid #e1e8ed;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: var(--secondary-color);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        /* BAHOLASH BO'LIMI */
+        .feedback-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
         .rating-stars {
             display: flex;
-            gap: 10px;
-            font-size: 2rem;
-            color: #ccc;
+            justify-content: center;
+            gap: 12px;
+            font-size: 2.5rem;
+            color: #ddd;
             cursor: pointer;
-            margin: 15px 0;
+            margin: 20px 0;
+        }
+
+        .rating-stars .fa-star {
+            transition: color 0.2s ease;
         }
 
         .rating-stars .fa-star.active {
-            color: #ffb703;
+            color: var(--accent-color);
         }
 
         textarea {
             width: 100%;
-            height: 100px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            margin-bottom: 15px;
+            height: 120px;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
             resize: vertical;
         }
 
-        .btn {
-            background: #0077b6;
-            color: white;
+        textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: var(--white);
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 35px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: #0096c7;
-        }
-
-        /* Aloqa va Social */
-        .contact-info p {
-            margin-bottom: 10px;
             font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: var(--dark-color);
+        }
+
+        /* BOG'LANISH BO'LIMI */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contact-info-box {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .info-item i {
+            width: 45px;
+            height: 45px;
+            background: #e6f4f8;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
 
         .instagram-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 12px;
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-            padding: 12px 24px;
+            color: var(--white);
+            padding: 14px 28px;
             border-radius: 30px;
             text-decoration: none;
-            font-weight: bold;
-            margin-top: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(220,39,67,0.3);
+            transition: transform 0.3s;
+            margin-top: 10px;
+            width: fit-content;
         }
 
-        .qr-section {
+        .instagram-btn:hover {
+            transform: scale(1.03);
+        }
+
+        .qr-card {
             text-align: center;
+            background: #f8fbfe;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px dashed var(--primary-color);
         }
 
-        .qr-section img {
-            margin-top: 15px;
-            border: 5px solid #0077b6;
-            border-radius: 10px;
+        .qr-card img {
+            width: 180px;
+            height: 180px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-content, .contact-container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navigatsiya -->
+    <!-- HEADER -->
     <header>
-        <div class="logo">EcoWash 333</div>
+        <div class="logo">
+            <i class="fa-solid fa-car-wash"></i> EcoWash 333
+        </div>
         <nav>
             <a href="#about">Biz haqimizda</a>
-            <a href="#contact">Biz bilan bog'lanish</a>
+            <a href="#services">Xizmatlar</a>
             <a href="#feedback">Baholash</a>
+            <a href="#contact">Biz bilan bog'lanish</a>
         </nav>
     </header>
 
+    <!-- HERO / BANNER -->
+    <div class="hero">
+        <h1>EcoWash 333 Avtomoykasi</h1>
+        <p>Avtomobilingiz uchun mukammal tozalik va yuqori sifatli o'z-o'ziga xizmat ko'rsatish tizimi!</p>
+        <a href="#feedback" class="btn-hero">Fikr Bildirish</a>
+    </div>
+
     <div class="container">
-        
-        <!-- Biz haqimizda bo'limi -->
+
+        <!-- BIZ HAQIMIZDA -->
         <section id="about">
-            <h2>Biz haqimizda</h2>
-            <p><strong>EcoWash 333</strong> — zamonaviy o'z-o'ziga xizmat ko'rsatish avtomoykasi. Biz mijozlarimizga yuqori sifatli suv va ko'pik bosimi hamda qulay sharoitlarni taqdim etamiz. Avtomobilingizni tez, hamyonbop va sifatli yuvish uchun barcha sharoitlar yaratilgan.</p>
+            <div class="section-title">
+                <h2>Biz Haqimizda</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>EcoWash 333</strong> — zamonaviy texnologiyalar bilan jihozlangan o'z-o'ziga xizmat ko'rsatish avtomoykasi bo'lib, mijozlarimizga tez, qulay va hamyonbop xizmatlarni taqdim etadi.</p>
+                    <p>Bizning maqsadimiz — avtomobilingizni ortiqcha navbatlarsiz va sifatli mahsulotlar (aktiv ko'pik, osmos suvi, mum xizmati) orqali tozalashingizni ta'minlashdir.</p>
+                    <ul class="about-features">
+                        <li><i class="fa-solid fa-circle-check"></i> 24/7 uzluksiz xizmat ko'rsatish</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Yuqori bosimli sifatli suv va ko'pik</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Qulay to'lov tizimi</li>
+                    </ul>
+                </div>
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=800&q=80" alt="EcoWash 333 Car Wash">
+                </div>
+            </div>
         </section>
 
-        <!-- Baholash va Fikr qoldirish bo'limi -->
+        <!-- XIZMATLAR -->
+        <section id="services">
+            <div class="section-title">
+                <h2>Bizning Xizmatlar</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fa-solid fa-soap"></i>
+                    <h3>Aktiv Ko'pik</h3>
+                    <p>Moyka va kirni tezda parchalaydigan va bo'yoqqa zarar yetkazmaydigan sifatli kimyo.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-spray-can-sparkles"></i>
+                    <h3>Yuqori Bosim</h3>
+                    <p>Kuchli suv bosimi orqali eng qiyin joylardagi kirlarni ham osonlikcha tozalash.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3>Mum (Vosk) Himiysi</h3>
+                    <p>Avtomobil yuzasini himoya qiluvchi va unga yaltirash beruvchi maxsus mum qatlami.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-wind"></i>
+                    <h3>Osmos Suvi</h3>
+                    <p>Dog' qoldirmaydigan maxsus filtrlangan suv orqali yakuniy chayish.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BAHOLASH & FIKR YUBORISH -->
         <section id="feedback">
-            <h2>Xizmatimizni baholang</h2>
-            <p>Fikringiz biz uchun juda muhim! Baho qo'ying va taklifingizni yuboring:</p>
-            
-            <div class="rating-stars" id="starRating">
-                <i class="fa-solid fa-star" data-value="1"></i>
-                <i class="fa-solid fa-star" data-value="2"></i>
-                <i class="fa-solid fa-star" data-value="3"></i>
-                <i class="fa-solid fa-star" data-value="4"></i>
-                <i class="fa-solid fa-star" data-value="5"></i>
+            <div class="section-title">
+                <h2>Xizmatimizni Baholang</h2>
             </div>
-
-            <textarea id="feedbackText" placeholder="Fikringiz yoki taklifingizni shu yerga yozing..."></textarea>
-            <br>
-            <button class="btn" onclick="sendFeedback()">Yuborish</button>
-            <p id="statusMessage" style="margin-top: 10px; font-weight: bold;"></p>
-        </section>
-
-        <!-- Biz bilan bog'lanish bo'limi -->
-        <section id="contact">
-            <h2>Biz bilan bog'lanish</h2>
-            <div class="contact-info">
-                <p><i class="fa-solid fa-phone" style="color: #0077b6;"></i> <strong>Telefon:</strong> <a href="tel:+998886791007" style="color: inherit; text-decoration: none;">+998 88 679 1007</a></p>
+            <div class="feedback-form">
+                <p>Xizmatimiz sifatini oshirishga yordam bering. Baho va fikrlaringiz to'g'ridan-to'g'ri rahbariyatga yetib boradi:</p>
                 
-                <!-- Instagram Tugmasi -->
-                <a href="https://instagram.com/ecowash.333" target="_blank" class="instagram-btn">
-                    <i class="fa-brands fa-instagram fa-xl"></i> Instagram: ecowash.333
-                </a>
+                <div class="rating-stars" id="starRating">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div>
+
+                <textarea id="feedbackText" placeholder="Taklif yoki mulohazangizni yozing..."></textarea>
+                <br>
+                <button class="btn-submit" onclick="sendFeedback()">Yuborish</button>
+                <p id="statusMessage" style="margin-top: 15px; font-weight: 600;"></p>
             </div>
         </section>
 
-        <!-- QR Kod Bo'limi -->
-        <section class="qr-section">
-            <h2>Bizning Sahifa QR Kodi</h2>
-            <p>Ushbu QR kodni skanerlab, do'stlaringiz bilan ulashing:</p>
-            <img id="qrCodeImage" src="" alt="EcoWash 333 QR Code">
+        <!-- BIZ BILAN BOG'LANISH -->
+        <section id="contact">
+            <div class="section-title">
+                <h2>Biz Bilan Bog'lanish</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info-box">
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Telefon raqam:</strong><br>
+                            <a href="tel:+998886791007" style="color: inherit; text-decoration: none;">+998 88 679 1007</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Manzil:</strong><br>
+                            EcoWash 333 Avtomoykasi
+                        </div>
+                    </div>
+
+                    <!-- Instagram Tugmasi -->
+                    <a href="https://instagram.com/ecowash.333" target="_blank" class="instagram-btn">
+                        <i class="fa-brands fa-instagram fa-xl"></i> Instagram: ecowash.333
+                    </a>
+                </div>
+
+                <!-- QR Kod -->
+                <div class="qr-card">
+                    <h3>Bizning Sahifa QR Kodi</h3>
+                    <p>Telefoningiz kameralari orqali skanerlang:</p>
+                    <img id="qrCodeImage" src="" alt="EcoWash 333 QR Code">
+                </div>
+            </div>
         </section>
 
     </div>
 
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 EcoWash 333. Barcha huquqlar himoyalangan.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
     <script>
-        // --- 1. Yulduzchalar orqali baholash mantigi ---
+        // 1. Yulduzlar orqali baholash
         let selectedRating = 0;
         const stars = document.querySelectorAll('#starRating .fa-star');
 
@@ -223,7 +556,7 @@
             });
         }
 
-        // --- 2. Fikr va Baholarni Telegram Bot orqali yuborish ---
+        // 2. Telegram Bot Integratsiyasi (Fikr va Baholarni Yuborish)
         function sendFeedback() {
             const text = document.getElementById('feedbackText').value;
             const statusMessage = document.getElementById('statusMessage');
@@ -234,13 +567,16 @@
                 return;
             }
 
-            // Kiritilgan Telegram Bot ma'lumotlari
+            // Kiritilgan Token va Chat ID
             const BOT_TOKEN = "8930316035:AAGgTst946gpMwuY0EqHjVUcbRJxWWaKkbg"; 
             const CHAT_ID = "7041471070";
 
-            const message = `🚗 *EcoWash 333 — Yangi Fikr!*\n\n⭐ *Baho:* ${selectedRating} / 5\n💬 *Fikr:* ${text || 'Fikr bildirilmadi'}`;
+            const message = `🚗 *EcoWash 333 — Yangi Fikr!*\n\n⭐ *Baho:* ${selectedRating} / 5\n💬 *Fikr:* ${text || 'Fikr bildirilmagan'}`;
 
             const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            statusMessage.style.color = "#0077b6";
+            statusMessage.innerText = "Yuborilmoqda...";
 
             fetch(url, {
                 method: 'POST',
@@ -270,7 +606,7 @@
             });
         }
 
-        // --- 3. QR Kodni joriy sahifa linkiga moslash ---
+        // 3. QR Kodni avtomatik yaratish
         window.onload = function() {
             const currentUrl = encodeURIComponent(window.location.href);
             document.getElementById('qrCodeImage').src = `https://quickchart.io/qr?text=${currentUrl}&size=200`;
