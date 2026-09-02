@@ -13,6 +13,10 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: #020813;
       color: #ffffff;
@@ -278,6 +282,93 @@
       transform: translateX(3px);
     }
 
+    /* BO'LIM 1: MASHINA YUVISH KETMA-KETLIGI DETAL SAHIFASI */
+    .detail-section {
+      width: 90%;
+      max-width: 600px;
+      margin: 50px auto 20px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(0, 183, 255, 0.3);
+    }
+
+    .detail-header {
+      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 210, 255, 0.05));
+      border: 1px solid rgba(0, 183, 255, 0.4);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 20px rgba(0, 183, 255, 0.15);
+    }
+
+    .detail-header i {
+      font-size: 24px;
+      color: #00b7ff;
+    }
+
+    .detail-header h2 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .steps-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .step-card {
+      background: rgba(10, 20, 38, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 183, 255, 0.25);
+      border-left: 4px solid #00b7ff;
+      border-radius: 14px;
+      padding: 16px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      border-color: rgba(0, 183, 255, 0.6);
+      border-left-color: #00f2c3;
+      box-shadow: 0 0 20px rgba(0, 183, 255, 0.2);
+      transform: translateX(4px);
+    }
+
+    .step-title-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .step-badge {
+      background: rgba(0, 183, 255, 0.15);
+      color: #00b7ff;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 183, 255, 0.3);
+    }
+
+    .step-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .step-desc {
+      font-size: 12px;
+      color: #a0aec0;
+      line-height: 1.5;
+    }
+
     /* FOOTER */
     footer {
       margin-top: 40px;
@@ -438,7 +529,7 @@
       justify-content: center;
       gap: 10px;
       margin-bottom: 20px;
-      direction: rtl; /* O'ngdan chapga tanlash uchun */
+      direction: rtl;
     }
 
     .stars input {
@@ -519,8 +610,8 @@
     <div class="section-title" id="txt-sections">ASOSIY BO'LIMLAR</div>
 
     <div class="container">
-      <!-- 01: Mashina Yuvish Ketma-ketligi -->
-      <a href="yuvish-ketma-ketligi.html" class="menu-card card-blue">
+      <!-- 01: Mashina Yuvish Ketma-ketligi (Pastga tushadi) -->
+      <a href="#sec-ketma-ketlik" class="menu-card card-blue">
         <div class="card-left">
           <div class="icon-circle"><i class="fa-solid fa-shower"></i></div>
           <div class="card-num">01</div>
@@ -529,11 +620,11 @@
             <p id="b1-desc">Mashina yuvish jarayonining bosqichma-bosqich ketma-ketligi bilan tanishing.</p>
           </div>
         </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
       </a>
 
       <!-- 02: Vositalar va ularning vazifalari -->
-      <a href="vositalar.html" class="menu-card card-cyan">
+      <a href="#sec-vositalar" class="menu-card card-cyan">
         <div class="card-left">
           <div class="icon-circle"><i class="fa-solid fa-spray-can"></i></div>
           <div class="card-num">02</div>
@@ -542,7 +633,7 @@
             <p id="b2-desc">Har bir vosita nima uchun ishlatilishini va vazifasini bilib oling.</p>
           </div>
         </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
       </a>
 
       <!-- 03: Baholash (Modal chiqaradi) -->
@@ -555,11 +646,11 @@
             <p id="b3-desc">Xizmatimiz sizga yoqdimi? Bizni baholang va fikringizni bildiring.</p>
           </div>
         </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="card-arrow"><i class="fa-solid fa-star"></i></div>
       </div>
 
       <!-- 04: Biz Haqimizda -->
-      <a href="biz-haqimizda.html" class="menu-card card-orange">
+      <a href="#sec-about" class="menu-card card-orange">
         <div class="card-left">
           <div class="icon-circle"><i class="fa-solid fa-circle-info"></i></div>
           <div class="card-num">04</div>
@@ -568,9 +659,107 @@
             <p id="b4-desc">Sam Moyka 333 haqida batafsil ma'lumot va bizning ustunliklarimiz.</p>
           </div>
         </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
       </a>
     </div>
+
+    <!-- BO'LIM 01: MASHINA YUVISH KETMA-KETLIGI DETAL MATNLARI -->
+    <section class="detail-section" id="sec-ketma-ketlik">
+      <div class="detail-header">
+        <i class="fa-solid fa-car-wash"></i>
+        <h2 id="seq-header">🚗 Sam Moyka 333 — Mashina yuvish ketma-ketligi</h2>
+      </div>
+
+      <div class="steps-grid">
+        <!-- 1-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">1️⃣</span>
+            <div class="step-title" id="s1-t">Quruq kirni suv bilan ketkazish 💦</div>
+          </div>
+          <div class="step-desc" id="s1-d">
+            Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.
+          </div>
+        </div>
+
+        <!-- 2-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">2️⃣</span>
+            <div class="step-title" id="s2-t">Aktivniy pena 🫧</div>
+          </div>
+          <div class="step-desc" id="s2-d">
+            Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.
+          </div>
+        </div>
+
+        <!-- 3-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">3️⃣</span>
+            <div class="step-title" id="s3-t">Kutish ⏱️</div>
+          </div>
+          <div class="step-desc" id="s3-d">
+            Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.
+          </div>
+        </div>
+
+        <!-- 4-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">4️⃣</span>
+            <div class="step-title" id="s4-t">Gubka / cho‘tka bilan yuvish 🧽</div>
+          </div>
+          <div class="step-desc" id="s4-d">
+            Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.
+          </div>
+        </div>
+
+        <!-- 5-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">5️⃣</span>
+            <div class="step-title" id="s5-t">Toza suv bilan chayish 🚿</div>
+          </div>
+          <div class="step-desc" id="s5-d">
+            Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.
+          </div>
+        </div>
+
+        <!-- 6-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">6️⃣</span>
+            <div class="step-title" id="s6-t">Vosk ✨</div>
+          </div>
+          <div class="step-desc" id="s6-d">
+            Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.
+          </div>
+        </div>
+
+        <!-- 7-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">7️⃣</span>
+            <div class="step-title" id="s7-t">Nano 💎</div>
+          </div>
+          <div class="step-desc" id="s7-d">
+            Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.
+          </div>
+        </div>
+
+        <!-- 8-bosqich -->
+        <div class="step-card">
+          <div class="step-title-box">
+            <span class="step-badge">8️⃣</span>
+            <div class="step-title" id="s8-t">Yakuniy chayish va quritish 🌟</div>
+          </div>
+          <div class="step-desc" id="s8-d">
+            Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->
@@ -654,6 +843,23 @@
         b3Desc: "Xizmatimiz sizga yoqdimi? Bizni baholang va fikringizni bildiring.",
         b4Title: "BIZ HAQIMIZDA",
         b4Desc: "Sam Moyka 333 haqida batafsil ma'lumot va bizning ustunliklarimiz.",
+        seqHeader: "🚗 Sam Moyka 333 — Mashina yuvish ketma-ketligi",
+        s1t: "Quruq kirni suv bilan ketkazish 💦",
+        s1d: "Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.",
+        s2t: "Aktivniy pena 🫧",
+        s2d: "Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.",
+        s3t: "Kutish ⏱️",
+        s3d: "Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.",
+        s4t: "Gubka / cho‘tka bilan yuvish 🧽",
+        s4d: "Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.",
+        s5t: "Toza suv bilan chayish 🚿",
+        s5d: "Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.",
+        s6t: "Vosk ✨",
+        s6d: "Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.",
+        s7t: "Nano 💎",
+        s7d: "Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.",
+        s8t: "Yakuniy chayish va quritish 🌟",
+        s8d: "Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.",
         contact: "BIZ BILAN BOG'LANING",
         phone: "Telefon",
         qr: "QR kodni skaner qiling<br>va saytga kiring!",
@@ -676,6 +882,23 @@
         b3Desc: "Хизматимиз сизга ёқдими? Бизни баҳоланг ва фикрингизни билдиринг.",
         b4Title: "БИЗ ҲАҚИМИЗДА",
         b4Desc: "Сам Мойка 333 ҳақида батафсил маълумот ва бизнинг устунликларимиз.",
+        seqHeader: "🚗 Сам Мойка 333 — Машина ювиш кетма-кетлиги",
+        s1t: "Қуруқ кирни сув билан кетказиш 💦",
+        s1d: "Аввал машинанинг устидаги чанг, қум ва йирик кирлар кучли сув билан чайилади.",
+        s2t: "Аксивний пена 🫧",
+        s2d: "Машина махсус актив кўпик билан тўлиқ қопланади. Пена кир ва ёғларни юмшатади.",
+        s3t: "Кутиш ⏱️",
+        s3d: "Пена бир неча дақиқа ишлаши учун қолдирилади. Қуриб қолишига йўл қўйилмайди.",
+        s4t: "Губка / чўтка билан ювиш 🧽",
+        s4d: "Юмшаган кирлар губка ёки юмшоқ чўтка ёрдамида эҳтиёткорлик билан тозаланади.",
+        s5t: "Тоза сув билан чайиш 🚿",
+        s5d: "Барча пена ва кирлар юқори босимли тоза сув билан яхшилаб ювиб ташланади.",
+        s6t: "Воск ✨",
+        s6d: "Воск қўлланади. У кузовга ялтироқлик беради ва сувнинг тезроқ оқиб тушишига ёрдам беради.",
+        s7t: "Нано 💎",
+        s7d: "Нано восита кузовга қўлланиб, ҳимоя ва ялтироқликни кучайтиради.",
+        s8t: "Якуний чайиш ва қуритиш 🌟",
+        s8d: "Машина охирги марта чайилади ва сув томчилари микрофибер латта билан артилади.",
         contact: "БИЗ БИЛАН БОҒЛАНИНГ",
         phone: "Телефон",
         qr: "QR кодни сканер қилинг<br>ва сайтга киринг!",
@@ -708,6 +931,24 @@
 
       document.getElementById('b4-title').innerText = languages[lang].b4Title;
       document.getElementById('b4-desc').innerText = languages[lang].b4Desc;
+
+      document.getElementById('seq-header').innerText = languages[lang].seqHeader;
+      document.getElementById('s1-t').innerText = languages[lang].s1t;
+      document.getElementById('s1-d').innerText = languages[lang].s1d;
+      document.getElementById('s2-t').innerText = languages[lang].s2t;
+      document.getElementById('s2-d').innerText = languages[lang].s2d;
+      document.getElementById('s3-t').innerText = languages[lang].s3t;
+      document.getElementById('s3-d').innerText = languages[lang].s3d;
+      document.getElementById('s4-t').innerText = languages[lang].s4t;
+      document.getElementById('s4-d').innerText = languages[lang].s4d;
+      document.getElementById('s5-t').innerText = languages[lang].s5t;
+      document.getElementById('s5-d').innerText = languages[lang].s5d;
+      document.getElementById('s6-t').innerText = languages[lang].s6t;
+      document.getElementById('s6-d').innerText = languages[lang].s6d;
+      document.getElementById('s7-t').innerText = languages[lang].s7t;
+      document.getElementById('s7-d').innerText = languages[lang].s7d;
+      document.getElementById('s8-t').innerText = languages[lang].s8t;
+      document.getElementById('s8-d').innerText = languages[lang].s8d;
 
       document.getElementById('txt-contact').innerText = languages[lang].contact;
       document.getElementById('txt-phone').innerText = languages[lang].phone;
