@@ -28,16 +28,27 @@
       overflow-x: hidden;
     }
 
+    /* QIZIL KO'PIK (FOAM/SNOW) CANVAS ANIMATSIYASI */
+    #foamCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: -1;
+    }
+
     /* Suv tomchilari va avto foni simulyatsiyasi */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       background: 
-        radial-gradient(circle at 80% 10%, rgba(0, 162, 255, 0.25), transparent 40%),
-        radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15), transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(0, 162, 255, 0.2), transparent 40%),
+        radial-gradient(circle at 20% 50%, rgba(255, 0, 80, 0.12), transparent 40%),
         radial-gradient(circle at 70% 80%, rgba(255, 140, 0, 0.15), transparent 40%);
-      z-index: -1;
+      z-index: -2;
     }
 
     /* HEADER */
@@ -129,7 +140,7 @@
     /* ASOSIY BO'LIMLAR TITLE */
     .section-title {
       text-align: center;
-      margin: 25px 0 15px;
+      margin: 35px 0 20px;
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 2px;
@@ -162,7 +173,7 @@
       justify-content: space-between;
       padding: 16px 20px;
       border-radius: 20px;
-      background: rgba(10, 20, 38, 0.55);
+      background: rgba(10, 20, 38, 0.65);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       text-decoration: none;
@@ -173,40 +184,39 @@
       overflow: hidden;
     }
 
-    /* Neon Hovli Ranglari */
     .card-blue {
       border: 1.5px solid rgba(0, 150, 255, 0.5);
-      box-shadow: 0 0 15px rgba(0, 150, 255, 0.2), inset 0 0 15px rgba(0, 150, 255, 0.1);
+      box-shadow: 0 0 15px rgba(0, 150, 255, 0.2);
     }
     .card-blue:hover {
-      box-shadow: 0 0 25px rgba(0, 183, 255, 0.6), inset 0 0 20px rgba(0, 183, 255, 0.3);
+      box-shadow: 0 0 25px rgba(0, 183, 255, 0.6);
       transform: translateY(-2px);
     }
 
     .card-cyan {
       border: 1.5px solid rgba(0, 230, 200, 0.5);
-      box-shadow: 0 0 15px rgba(0, 230, 200, 0.2), inset 0 0 15px rgba(0, 230, 200, 0.1);
+      box-shadow: 0 0 15px rgba(0, 230, 200, 0.2);
     }
     .card-cyan:hover {
-      box-shadow: 0 0 25px rgba(0, 242, 195, 0.6), inset 0 0 20px rgba(0, 242, 195, 0.3);
+      box-shadow: 0 0 25px rgba(0, 242, 195, 0.6);
       transform: translateY(-2px);
     }
 
     .card-purple {
       border: 1.5px solid rgba(160, 60, 255, 0.5);
-      box-shadow: 0 0 15px rgba(160, 60, 255, 0.2), inset 0 0 15px rgba(160, 60, 255, 0.1);
+      box-shadow: 0 0 15px rgba(160, 60, 255, 0.2);
     }
     .card-purple:hover {
-      box-shadow: 0 0 25px rgba(180, 70, 255, 0.6), inset 0 0 20px rgba(180, 70, 255, 0.3);
+      box-shadow: 0 0 25px rgba(180, 70, 255, 0.6);
       transform: translateY(-2px);
     }
 
     .card-orange {
       border: 1.5px solid rgba(255, 150, 0, 0.5);
-      box-shadow: 0 0 15px rgba(255, 150, 0, 0.2), inset 0 0 15px rgba(255, 150, 0, 0.1);
+      box-shadow: 0 0 15px rgba(255, 150, 0, 0.2);
     }
     .card-orange:hover {
-      box-shadow: 0 0 25px rgba(255, 170, 0, 0.6), inset 0 0 20px rgba(255, 170, 0, 0.3);
+      box-shadow: 0 0 25px rgba(255, 170, 0, 0.6);
       transform: translateY(-2px);
     }
 
@@ -216,7 +226,6 @@
       gap: 16px;
     }
 
-    /* Dumaloq Ikonkalar */
     .icon-circle {
       width: 48px;
       height: 48px;
@@ -282,31 +291,37 @@
       transform: translateX(3px);
     }
 
-    /* BO'LIM 1: MASHINA YUVISH KETMA-KETLIGI DETAL SAHIFASI */
+    /* BO'LIMLAR UCHUN UMUMIY DETAL BOSH-MASOFASI (ORASINI OCHISH UCHUN) */
     .detail-section {
       width: 90%;
       max-width: 600px;
-      margin: 50px auto 20px;
-      padding-top: 20px;
-      border-top: 1px dashed rgba(0, 183, 255, 0.3);
+      margin: 100px auto 40px; /* Orasi kengaytirildi (100px) */
+      padding-top: 30px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.15);
     }
 
     .detail-header {
-      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 210, 255, 0.05));
-      border: 1px solid rgba(0, 183, 255, 0.4);
       border-radius: 16px;
       padding: 18px 20px;
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 25px;
-      box-shadow: 0 0 20px rgba(0, 183, 255, 0.15);
     }
 
-    .detail-header i {
-      font-size: 24px;
-      color: #00b7ff;
+    .detail-header-blue {
+      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 210, 255, 0.05));
+      border: 1px solid rgba(0, 183, 255, 0.4);
+      box-shadow: 0 0 20px rgba(0, 183, 255, 0.15);
     }
+    .detail-header-blue i { color: #00b7ff; font-size: 24px; }
+
+    .detail-header-cyan {
+      background: linear-gradient(135deg, rgba(0, 230, 200, 0.2), rgba(0, 242, 195, 0.05));
+      border: 1px solid rgba(0, 242, 195, 0.4);
+      box-shadow: 0 0 20px rgba(0, 242, 195, 0.15);
+    }
+    .detail-header-cyan i { color: #00f2c3; font-size: 24px; }
 
     .detail-header h2 {
       font-size: 16px;
@@ -323,20 +338,35 @@
     }
 
     .step-card {
-      background: rgba(10, 20, 38, 0.6);
+      background: rgba(10, 20, 38, 0.7);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(0, 183, 255, 0.25);
-      border-left: 4px solid #00b7ff;
       border-radius: 14px;
       padding: 16px 20px;
       transition: all 0.3s ease;
     }
 
-    .step-card:hover {
+    /* BO'LIM 1 STIL */
+    .step-card-blue {
+      border: 1px solid rgba(0, 183, 255, 0.25);
+      border-left: 4px solid #00b7ff;
+    }
+    .step-card-blue:hover {
       border-color: rgba(0, 183, 255, 0.6);
       border-left-color: #00f2c3;
       box-shadow: 0 0 20px rgba(0, 183, 255, 0.2);
+      transform: translateX(4px);
+    }
+
+    /* BO'LIM 2 STIL */
+    .step-card-cyan {
+      border: 1px solid rgba(0, 242, 195, 0.25);
+      border-left: 4px solid #00f2c3;
+    }
+    .step-card-cyan:hover {
+      border-color: rgba(0, 242, 195, 0.6);
+      border-left-color: #00b7ff;
+      box-shadow: 0 0 20px rgba(0, 242, 195, 0.2);
       transform: translateX(4px);
     }
 
@@ -347,7 +377,7 @@
       margin-bottom: 6px;
     }
 
-    .step-badge {
+    .step-badge-blue {
       background: rgba(0, 183, 255, 0.15);
       color: #00b7ff;
       font-size: 11px;
@@ -355,6 +385,16 @@
       padding: 3px 8px;
       border-radius: 6px;
       border: 1px solid rgba(0, 183, 255, 0.3);
+    }
+
+    .step-badge-cyan {
+      background: rgba(0, 242, 195, 0.15);
+      color: #00f2c3;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 242, 195, 0.3);
     }
 
     .step-title {
@@ -371,7 +411,7 @@
 
     /* FOOTER */
     footer {
-      margin-top: 40px;
+      margin-top: 60px;
       padding: 20px 5%;
       background: rgba(3, 8, 20, 0.85);
       border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -432,7 +472,6 @@
       color: #e2e8f0;
     }
 
-    /* QR Box */
     .qr-box {
       display: flex;
       align-items: center;
@@ -464,7 +503,7 @@
       margin-top: 20px;
     }
 
-    /* 5 YULDUZLI BAHOLASH MODAL POP-UP */
+    /* MODAL */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -523,7 +562,6 @@
       margin-bottom: 20px;
     }
 
-    /* Stars */
     .stars {
       display: flex;
       justify-content: center;
@@ -532,10 +570,7 @@
       direction: rtl;
     }
 
-    .stars input {
-      display: none;
-    }
-
+    .stars input { display: none; }
     .stars label {
       font-size: 32px;
       color: #334155;
@@ -584,6 +619,9 @@
 </head>
 <body>
 
+  <!-- QIZIL KO'PIK FON CANVAS -->
+  <canvas id="foamCanvas"></canvas>
+
   <!-- HEADER -->
   <header>
     <div class="logo-box">
@@ -610,7 +648,7 @@
     <div class="section-title" id="txt-sections">ASOSIY BO'LIMLAR</div>
 
     <div class="container">
-      <!-- 01: Mashina Yuvish Ketma-ketligi (Pastga tushadi) -->
+      <!-- 01: Mashina Yuvish Ketma-ketligi -->
       <a href="#sec-ketma-ketlik" class="menu-card card-blue">
         <div class="card-left">
           <div class="icon-circle"><i class="fa-solid fa-shower"></i></div>
@@ -636,7 +674,7 @@
         <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
       </a>
 
-      <!-- 03: Baholash (Modal chiqaradi) -->
+      <!-- 03: Baholash -->
       <div class="menu-card card-purple" onclick="openRatingModal()">
         <div class="card-left">
           <div class="icon-circle"><i class="fa-solid fa-star"></i></div>
@@ -663,100 +701,126 @@
       </a>
     </div>
 
-    <!-- BO'LIM 01: MASHINA YUVISH KETMA-KETLIGI DETAL MATNLARI -->
+    <!-- BO'LIM 01: MASHINA YUVISH KETMA-KETLIGI -->
     <section class="detail-section" id="sec-ketma-ketlik">
-      <div class="detail-header">
+      <div class="detail-header detail-header-blue">
         <i class="fa-solid fa-car-wash"></i>
         <h2 id="seq-header">🚗 Sam Moyka 333 — Mashina yuvish ketma-ketligi</h2>
       </div>
 
       <div class="steps-grid">
-        <!-- 1-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">1️⃣</span>
+            <span class="step-badge-blue">1️⃣</span>
             <div class="step-title" id="s1-t">Quruq kirni suv bilan ketkazish 💦</div>
           </div>
-          <div class="step-desc" id="s1-d">
-            Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.
-          </div>
+          <div class="step-desc" id="s1-d">Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.</div>
         </div>
 
-        <!-- 2-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">2️⃣</span>
+            <span class="step-badge-blue">2️⃣</span>
             <div class="step-title" id="s2-t">Aktivniy pena 🫧</div>
           </div>
-          <div class="step-desc" id="s2-d">
-            Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.
-          </div>
+          <div class="step-desc" id="s2-d">Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.</div>
         </div>
 
-        <!-- 3-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">3️⃣</span>
+            <span class="step-badge-blue">3️⃣</span>
             <div class="step-title" id="s3-t">Kutish ⏱️</div>
           </div>
-          <div class="step-desc" id="s3-d">
-            Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.
-          </div>
+          <div class="step-desc" id="s3-d">Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.</div>
         </div>
 
-        <!-- 4-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">4️⃣</span>
+            <span class="step-badge-blue">4️⃣</span>
             <div class="step-title" id="s4-t">Gubka / cho‘tka bilan yuvish 🧽</div>
           </div>
-          <div class="step-desc" id="s4-d">
-            Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.
-          </div>
+          <div class="step-desc" id="s4-d">Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.</div>
         </div>
 
-        <!-- 5-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">5️⃣</span>
+            <span class="step-badge-blue">5️⃣</span>
             <div class="step-title" id="s5-t">Toza suv bilan chayish 🚿</div>
           </div>
-          <div class="step-desc" id="s5-d">
-            Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.
-          </div>
+          <div class="step-desc" id="s5-d">Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.</div>
         </div>
 
-        <!-- 6-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">6️⃣</span>
+            <span class="step-badge-blue">6️⃣</span>
             <div class="step-title" id="s6-t">Vosk ✨</div>
           </div>
-          <div class="step-desc" id="s6-d">
-            Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.
-          </div>
+          <div class="step-desc" id="s6-d">Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.</div>
         </div>
 
-        <!-- 7-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">7️⃣</span>
+            <span class="step-badge-blue">7️⃣</span>
             <div class="step-title" id="s7-t">Nano 💎</div>
           </div>
-          <div class="step-desc" id="s7-d">
-            Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.
-          </div>
+          <div class="step-desc" id="s7-d">Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.</div>
         </div>
 
-        <!-- 8-bosqich -->
-        <div class="step-card">
+        <div class="step-card step-card-blue">
           <div class="step-title-box">
-            <span class="step-badge">8️⃣</span>
+            <span class="step-badge-blue">8️⃣</span>
             <div class="step-title" id="s8-t">Yakuniy chayish va quritish 🌟</div>
           </div>
-          <div class="step-desc" id="s8-d">
-            Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.
+          <div class="step-desc" id="s8-d">Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BO'LIM 02: VOSITALAR VA ULARNING VAZIFALARI -->
+    <section class="detail-section" id="sec-vositalar">
+      <div class="detail-header detail-header-cyan">
+        <i class="fa-solid fa-pump-soap"></i>
+        <h2 id="v-header">🧴 Vositalar va ularning vazifalari</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card step-card-cyan">
+          <div class="step-title-box">
+            <span class="step-badge-cyan">1</span>
+            <div class="step-title" id="v1-t">🫧 Pena</div>
           </div>
+          <div class="step-desc" id="v1-d">Oddiy ko‘pik — mashina yuzasidagi chang va kirlarni yumshatish hamda yuvishga tayyorlash uchun ishlatiladi.</div>
+        </div>
+
+        <div class="step-card step-card-cyan">
+          <div class="step-title-box">
+            <span class="step-badge-cyan">2</span>
+            <div class="step-title" id="v2-t">⚡ Aktivniy pena</div>
+          </div>
+          <div class="step-desc" id="v2-d">Kuchliroq tozalovchi vosita. Yog‘, yo‘l kiri va boshqa qattiqroq kirlarni yumshatishga yordam beradi.</div>
+        </div>
+
+        <div class="step-card step-card-cyan">
+          <div class="step-title-box">
+            <span class="step-badge-cyan">3</span>
+            <div class="step-title" id="v3-t">✨ Vosk</div>
+          </div>
+          <div class="step-desc" id="v3-d">Mashina kuzoviga yaltiroqlik beradi va suvning yuzada kamroq turishiga yordam beradi.</div>
+        </div>
+
+        <div class="step-card step-card-cyan">
+          <div class="step-title-box">
+            <span class="step-badge-cyan">4</span>
+            <div class="step-title" id="v4-t">💎 Nano</div>
+          </div>
+          <div class="step-desc" id="v4-d">Kuzovga himoya xususiyati berib, yaltiroqlikni uzoqroq saqlashga yordam beradi.</div>
+        </div>
+
+        <div class="step-card step-card-cyan">
+          <div class="step-title-box">
+            <span class="step-badge-cyan">5</span>
+            <div class="step-title" id="v5-t">💨 Yuqori bosimli havo purkagich (kompressor)</div>
+          </div>
+          <div class="step-desc" id="v5-d">Mashinaning suv qolib ketadigan joylarini, masalan, oynalar atrofi, panjara, oynalar oralig‘i va boshqa qismlarni havoni kuchli bosim bilan purkab quritishga yordam beradi.</div>
         </div>
       </div>
     </section>
@@ -805,7 +869,7 @@
     </div>
   </footer>
 
-  <!-- BAHOLASH MODAL POP-UP -->
+  <!-- MODAL POP-UP -->
   <div class="modal-overlay" id="ratingModal">
     <div class="modal-content">
       <span class="close-btn" onclick="closeRatingModal()">&times;</span>
@@ -860,6 +924,17 @@
         s7d: "Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.",
         s8t: "Yakuniy chayish va quritish 🌟",
         s8d: "Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.",
+        vHeader: "🧴 Vositalar va ularning vazifalari",
+        v1t: "🫧 Pena",
+        v1d: "Oddiy ko‘pik — mashina yuzasidagi chang va kirlarni yumshatish hamda yuvishga tayyorlash uchun ishlatiladi.",
+        v2t: "⚡ Aktivniy pena",
+        v2d: "Kuchliroq tozalovchi vosita. Yog‘, yo‘l kiri va boshqa qattiqroq kirlarni yumshatishga yordam beradi.",
+        v3t: "✨ Vosk",
+        v3d: "Mashina kuzoviga yaltiroqlik beradi va suvning yuzada kamroq turishiga yordam beradi.",
+        v4t: "💎 Nano",
+        v4d: "Kuzovga himoya xususiyati berib, yaltiroqlikni uzoqroq saqlashga yordam beradi.",
+        v5t: "💨 Yuqori bosimli havo purkagich (kompressor)",
+        v5d: "Mashinaning suv qolib ketadigan joylarini, masalan, oynalar atrofi, panjara, oynalar oralig‘i va boshqa qismlarni havoni kuchli bosim bilan purkab quritishga yordam beradi.",
         contact: "BIZ BILAN BOG'LANING",
         phone: "Telefon",
         qr: "QR kodni skaner qiling<br>va saytga kiring!",
@@ -899,6 +974,17 @@
         s7d: "Нано восита кузовга қўлланиб, ҳимоя ва ялтироқликни кучайтиради.",
         s8t: "Якуний чайиш ва қуритиш 🌟",
         s8d: "Машина охирги марта чайилади ва сув томчилари микрофибер латта билан артилади.",
+        vHeader: "🧴 Воситалар ва уларнинг вазифалари",
+        v1t: "🫧 Пена",
+        v1d: "Оддий кўпик — машина юзидаги чанг ва кирларни юмшатиш ҳамда ювишга тайёрлаш учун ишлатилади.",
+        v2t: "⚡ Активний пена",
+        v2d: "Кучлироқ тозаловчи восита. Ёғ, йўл кири ва бошқа қаттиқроқ кирларни юмшатишга ёрдам беради.",
+        v3t: "✨ Воск",
+        v3d: "Машина кузовига ялтироқлик беради ва сувнинг юзада камроқ туришига ёрдам беради.",
+        v4t: "💎 Нано",
+        v4d: "Кузовга ҳимоя хусусияти бериб, ялтироқликни узоқроқ сақлашга ёрдам беради.",
+        v5t: "💨 Юқори босимли ҳаво пуркагич (компрессор)",
+        v5d: "Машинанинг сув қолиб кетадиган жойларини, масалан, ойналар атрофи, панжара, ойналар оралиғи ва бошқа қисмларни ҳавони кучли босим билан пуркаб қуритишга ёрдам беради.",
         contact: "БИЗ БИЛАН БОҒЛАНИНГ",
         phone: "Телефон",
         qr: "QR кодни сканер қилинг<br>ва сайтга киринг!",
@@ -922,13 +1008,10 @@
 
       document.getElementById('b1-title').innerText = languages[lang].b1Title;
       document.getElementById('b1-desc').innerText = languages[lang].b1Desc;
-
       document.getElementById('b2-title').innerText = languages[lang].b2Title;
       document.getElementById('b2-desc').innerText = languages[lang].b2Desc;
-
       document.getElementById('b3-title').innerText = languages[lang].b3Title;
       document.getElementById('b3-desc').innerText = languages[lang].b3Desc;
-
       document.getElementById('b4-title').innerText = languages[lang].b4Title;
       document.getElementById('b4-desc').innerText = languages[lang].b4Desc;
 
@@ -950,6 +1033,18 @@
       document.getElementById('s8-t').innerText = languages[lang].s8t;
       document.getElementById('s8-d').innerText = languages[lang].s8d;
 
+      document.getElementById('v-header').innerText = languages[lang].vHeader;
+      document.getElementById('v1-t').innerText = languages[lang].v1t;
+      document.getElementById('v1-d').innerText = languages[lang].v1d;
+      document.getElementById('v2-t').innerText = languages[lang].v2t;
+      document.getElementById('v2-d').innerText = languages[lang].v2d;
+      document.getElementById('v3-t').innerText = languages[lang].v3t;
+      document.getElementById('v3-d').innerText = languages[lang].v3d;
+      document.getElementById('v4-t').innerText = languages[lang].v4t;
+      document.getElementById('v4-d').innerText = languages[lang].v4d;
+      document.getElementById('v5-t').innerText = languages[lang].v5t;
+      document.getElementById('v5-d').innerText = languages[lang].v5d;
+
       document.getElementById('txt-contact').innerText = languages[lang].contact;
       document.getElementById('txt-phone').innerText = languages[lang].phone;
       document.getElementById('txt-qr').innerHTML = languages[lang].qr;
@@ -961,7 +1056,6 @@
       document.getElementById('m-btn').innerText = languages[lang].mBtn;
     }
 
-    // Modalni ochish va yopish
     function openRatingModal() {
       document.getElementById('ratingModal').classList.add('active');
     }
@@ -975,6 +1069,71 @@
       alert("Rahmat! Bahoyingiz qabul qilindi.");
       closeRatingModal();
     }
+
+    /* QIZIL KO'PIK (RED FOAM/SNOW) CANVAS ANIMATSIYASI */
+    const canvas = document.getElementById('foamCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class RedFoamParticle {
+      constructor() {
+        this.reset();
+      }
+
+      reset() {
+        this.x = Math.random() * canvas.width;
+        this.y = -20;
+        this.radius = Math.random() * 3 + 1.5; // Ko'pik tomchisi hajmi
+        this.speedY = Math.random() * 1.2 + 0.5; // Tushish tezligi
+        this.speedX = Math.sin(Math.random() * Math.PI) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.2; // Yumshoq shaffoflik
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += Math.sin(this.y * 0.02) * 0.5;
+
+        if (this.y > canvas.height + 10) {
+          this.reset();
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        // Qizil neonaviy yog'du
+        ctx.fillStyle = `rgba(255, 45, 85, ${this.opacity})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = "rgba(255, 0, 75, 0.8)";
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+
+    // 40 ta nafis ko'pik tomchisi yaratish
+    for (let i = 0; i < 40; i++) {
+      particles.push(new RedFoamParticle());
+    }
+
+    function animateFoam() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      requestAnimationFrame(animateFoam);
+    }
+
+    animateFoam();
   </script>
 </body>
 </html>
