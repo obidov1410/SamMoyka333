@@ -798,21 +798,21 @@ position:fixed;
 right:20px;
 bottom:20px;
 
-width:48px;
-height:48px;
+width:58px;
+height:58px;
 
 border-radius:50%;
 
-border:1px solid rgba(0,183,255,.55);
+border:1.5px solid rgba(0,183,255,.7);
 
-background:rgba(5,18,35,.88);
+background:rgba(5,18,35,.92);
 
 backdrop-filter:blur(12px);
 -webkit-backdrop-filter:blur(12px);
 
 color:#00b7ff;
 
-font-size:18px;
+font-size:23px;
 
 display:flex;
 align-items:center;
@@ -840,17 +840,16 @@ visibility:visible;
 transform:translateY(0) scale(1);
 
 box-shadow:
-0 0 18px rgba(0,183,255,.35),
-inset 0 0 10px rgba(0,183,255,.08);
+0 0 22px rgba(0,183,255,.45),
+inset 0 0 12px rgba(0,183,255,.1);
 }
 
 #backToTop:hover{
-transform:translateY(-3px) scale(1.05);
+transform:translateY(-3px) scale(1.07);
 
 box-shadow:
-0 0 25px rgba(0,183,255,.65);
+0 0 30px rgba(0,183,255,.75);
 }
-
 
 @media(max-width:480px){
 
@@ -883,9 +882,11 @@ font-size:17px;
 #backToTop{
 right:15px;
 bottom:15px;
-width:45px;
-height:45px;
-font-size:17px;
+
+width:54px;
+height:54px;
+
+font-size:21px;
 }
 
 }
@@ -896,8 +897,7 @@ font-size:17px;
 
 <canvas id="foamCanvas"></canvas>
 
-
-<!-- YUQORIGA QAYTISH TUGMASI -->
+<!-- YUQORIGA QAYTISH -->
 
 <button
 id="backToTop"
@@ -1331,7 +1331,6 @@ id="sec-vositalar">
 
 
 <div class="steps-grid">
-
 
 <div class="step-card step-card-cyan">
 
@@ -1770,8 +1769,17 @@ Bahoyingiz muvaffaqiyatli yuborildi.
    TELEGRAM SOZLAMALARI
 ========================================= */
 
+/*
+  SHU YERGA O'ZINGDAGI BOT TOKENNI QO'Y.
+  Masalan:
+
+  const BOT_TOKEN =
+  "YANGI_TOKENING";
+
+*/
+
 const BOT_TOKEN =
-"8930316035:AAGGgTst946gpMwuY0EqHjVUcbRJxWWaKkbg";
+"BU_YERGA_BOT_TOKENINGIZNI_QOYING";
 
 const CHAT_ID =
 "7041471070";
@@ -1817,151 +1825,121 @@ b4Desc:
 seqHeader:
 "🚗 EcoWash 333 — Mashina yuvish ketma-ketligi",
 
-s1t:
-"Quruq kirni suv bilan ketkazish 💦",
+s1t:"Quruq kirni suv bilan ketkazish 💦",
 
 s1d:
 "Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.",
 
-s2t:
-"Aktivniy pena 🫧",
+s2t:"Aktivniy pena 🫧",
 
 s2d:
 "Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.",
 
-s3t:
-"Kutish ⏱️",
+s3t:"Kutish ⏱️",
 
 s3d:
 "Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.",
 
-s4t:
-"Gubka / cho‘tka bilan yuvish 🧽",
+s4t:"Gubka / cho‘tka bilan yuvish 🧽",
 
 s4d:
 "Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.",
 
-s5t:
-"Toza suv bilan chayish 🚿",
+s5t:"Toza suv bilan chayish 🚿",
 
 s5d:
 "Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.",
 
-s6t:
-"Vosk ✨",
+s6t:"Vosk ✨",
 
 s6d:
 "Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.",
 
-s7t:
-"Nano 💎",
+s7t:"Nano 💎",
 
 s7d:
 "Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.",
 
-s8t:
-"Yakuniy chayish va quritish 🌟",
+s8t:"Yakuniy chayish va quritish 🌟",
 
 s8d:
 "Mashina oxirgi marta chayiladi va suv tomchilari kompressor yordamida quritiladi.",
 
-vHeader:
-"🧴 Vositalar va ularning vazifalari",
+vHeader:"🧴 Vositalar va ularning vazifalari",
 
-v1t:
-"🫧 Pena",
+v1t:"🫧 Pena",
 
 v1d:
 "Oddiy ko‘pik — mashina yuzasidagi chang va kirlarni yumshatish hamda yuvishga tayyorlash uchun ishlatiladi.",
 
-v2t:
-"⚡ Aktivniy pena",
+v2t:"⚡ Aktivniy pena",
 
 v2d:
 "Kuchliroq tozalovchi vosita. Yog‘, yo‘l kiri va boshqa qattiqroq kirlarni yumshatishga yordam beradi.",
 
-v3t:
-"✨ Vosk",
+v3t:"✨ Vosk",
 
 v3d:
 "Mashina kuzoviga yaltiroqlik beradi va suvning yuzada kamroq turishiga yordam beradi.",
 
-v4t:
-"💎 Nano",
+v4t:"💎 Nano",
 
 v4d:
 "Kuzovga himoya xususiyati berib, yaltiroqlikni uzoqroq saqlashga yordam beradi.",
 
-v5t:
-"💨 Yuqori bosimli havo purkagich (kompressor)",
+v5t:"💨 Yuqori bosimli havo purkagich (kompressor)",
 
 v5d:
 "Mashinaning suv qolib ketadigan joylarini, masalan, oynalar atrofi, panjara, oynalar oralig‘i va boshqa qismlarni kuchli havo bosimi bilan quritishga yordam beradi.",
 
-contact:
-"BIZ BILAN BOG'LANING",
+contact:"BIZ BILAN BOG'LANING",
 
-contactHeader:
-"📞 EcoWash 333 — Biz bilan bog‘lanish",
+contactHeader:"📞 EcoWash 333 — Biz bilan bog‘lanish",
 
-phone:
-"Telefon",
+phone:"Telefon",
 
-qr:
-"QR kodni skaner qiling<br>va saytga kiring!",
+qr:"QR kodni skaner qiling<br>va saytga kiring!",
 
-copy:
-"© 2026 EcoWash 333. Barcha huquqlar himoyalangan.",
+copy:"© 2026 EcoWash 333. Barcha huquqlar himoyalangan.",
 
-mTitle:
-"Xizmatni baholang",
+mTitle:"Xizmatni baholang",
 
-mDesc:
-"O'z bahoingiz va fikringizni qoldiring",
+mDesc:"O'z bahoingiz va fikringizni qoldiring",
 
-mComment:
-"Fikringizni yozing (ixtiyoriy)...",
+mComment:"Fikringizni yozing (ixtiyoriy)...",
 
-mBtn:
-"YUBORISH"
+mBtn:"YUBORISH"
 
 },
 
 
 qr:{
 
-slogan:
-"СИФАТЛИ ЮВИШ – БИЗНИНГ ИШИМИЗ!",
+slogan:"СИФАТЛИ ЮВИШ – БИЗНИНГ ИШИМИЗ!",
 
-welcome:
-"ХУШ <span>КЕЛИБСИЗ!</span>",
+welcome:"ХУШ <span>КЕЛИБСИЗ!</span>",
 
 desc:
 "ЭкоВаш 333 хизматидан фойдаланганингиз учун раҳмат. Сифатли хизмат, замонавий воситалар ва профессионал ёндашув – бизнинг устуворлигимиз.",
 
-sections:
-"АСОСИЙ БЎЛИМЛАР",
+sections:"АСОСИЙ БЎЛИМЛАР",
 
-b1Title:
-"МАШИНА ЮВИШ КЕТМА-КЕТЛИГИ",
+b1Title:"МАШИНА ЮВИШ КЕТМА-КЕТЛИГИ",
 
 b1Desc:
 "Машина ювиш жараёнининг босқичма-босқич кетма-кетлиги билан танишинг.",
 
-b2Title:
-"ВОСИТАЛАР ВА УЛАРНИНГ ВАЗИФАЛАРИ",
+b2Title:"ВОСИТАЛАР ВА УЛАРНИНГ ВАЗИФАЛАРИ",
 
 b2Desc:
 "Ҳар бир восита нима учун ишлатилишини ва вазифасини билиб олинг.",
 
-b3Title:
-"БАҲОЛАШ",
+b3Title:"БАҲОЛАШ",
 
 b3Desc:
 "Хизматимиз сизга ёқдими? Бизни баҳоланг ва фикрингизни билдиринг.",
 
-b4Title:
-"БИЗ БИЛАН БОҒЛАНИШ",
+b4Title:"БИЗ БИЛАН БОҒЛАНИШ",
 
 b4Desc:
 "Instagram ва телефон орқали биз билан боғланинг.",
@@ -1969,113 +1947,90 @@ b4Desc:
 seqHeader:
 "🚗 EcoWash 333 — Машина ювиш кетма-кетлиги",
 
-s1t:
-"Қуруқ кирни сув билан кетказиш 💦",
+s1t:"Қуруқ кирни сув билан кетказиш 💦",
 
 s1d:
 "Аввал машинанинг устидаги чанг, қум ва йирик кирлар кучли сув билан чайилади.",
 
-s2t:
-"Активний пена 🫧",
+s2t:"Активний пена 🫧",
 
 s2d:
 "Машина махсус актив кўпик билан тўлиқ қопланади. Пена кир ва ёғларни юмшатади.",
 
-s3t:
-"Кутиш ⏱️",
+s3t:"Кутиш ⏱️",
 
 s3d:
 "Пена бир неча дақиқа ишлаши учун қолдирилади. Қуриб қолишига йўл қўйилмайди.",
 
-s4t:
-"Губка / чўтка билан ювиш 🧽",
+s4t:"Губка / чўтка билан ювиш 🧽",
 
 s4d:
 "Юмшаган кирлар губка ёки юмшоқ чўтка ёрдамида эҳтиёткорлик билан тозаланади.",
 
-s5t:
-"Тоза сув билан чайиш 🚿",
+s5t:"Тоза сув билан чайиш 🚿",
 
 s5d:
 "Барча пена ва кирлар юқори босимли тоза сув билан яхшилаб ювиб ташланади.",
 
-s6t:
-"Воск ✨",
+s6t:"Воск ✨",
 
 s6d:
 "Воск қўлланади. У кузовга ялтироқлик беради ва сувнинг тезроқ оқиб тушишига ёрдам беради.",
 
-s7t:
-"Нано 💎",
+s7t:"Нано 💎",
 
 s7d:
 "Нано восита кузовга қўлланиб, ҳимоя ва ялтироқликни кучайтиради.",
 
-s8t:
-"Якуний чайиш ва қуритиш 🌟",
+s8t:"Якуний чайиш ва қуритиш 🌟",
 
 s8d:
 "Машина охирги марта чайилади ва сув томчилари компрессор ёрдамида қуритилади.",
 
-vHeader:
-"🧴 Воситалар ва уларнинг вазифалари",
+vHeader:"🧴 Воситалар ва уларнинг вазифалари",
 
-v1t:
-"🫧 Пена",
+v1t:"🫧 Пена",
 
 v1d:
 "Оддий кўпик — машина юзидаги чанг ва кирларни юмшатиш ҳамда ювишга тайёрлаш учун ишлатилади.",
 
-v2t:
-"⚡ Активний пена",
+v2t:"⚡ Активний пена",
 
 v2d:
 "Кучлироқ тозаловчи восита. Ёғ, йўл кири ва бошқа қаттиқроқ кирларни юмшатишга ёрдам беради.",
 
-v3t:
-"✨ Воск",
+v3t:"✨ Воск",
 
 v3d:
 "Машина кузовига ялтироқлик беради ва сувнинг юзада камроқ туришига ёрдам беради.",
 
-v4t:
-"💎 Нано",
+v4t:"💎 Нано",
 
 v4d:
 "Кузовга ҳимоя хусусияти бериб, ялтироқликни узоқроқ сақлашга ёрдам беради.",
 
-v5t:
-"💨 Юқори босимли ҳаво пуркагич (компрессор)",
+v5t:"💨 Юқори босимли ҳаво пуркагич (компрессор)",
 
 v5d:
 "Машинанинг сув қолиб кетадиган жойларини, масалан, ойналар атрофи, панжара, ойналар оралиғи ва бошқа қисмларни кучли ҳаво босими билан қуритишга ёрдам беради.",
 
-contact:
-"БИЗ БИЛАН БОҒЛАНИШ",
+contact:"БИЗ БИЛАН БОҒЛАНИШ",
 
-contactHeader:
-"📞 EcoWash 333 — Biz bilan bog‘lanish",
+contactHeader:"📞 EcoWash 333 — Biz bilan bog‘lanish",
 
-phone:
-"Телефон",
+phone:"Телефон",
 
-qr:
-"QR кодни сканер қилинг<br>ва сайтга киринг!",
+qr:"QR кодни сканер қилинг<br>ва сайтга киринг!",
 
-copy:
-"© 2026 EcoWash 333. Барча ҳуқуқлар ҳимояланган.",
+copy:"© 2026 EcoWash 333. Барча ҳуқуқлар ҳимояланган.",
 
-mTitle:
-"Хизматни баҳоланг",
+mTitle:"Хизматни баҳоланг",
 
-mDesc:
-"Ўз баҳоингиз ва фикрингизни қолдиринг",
+mDesc:"Ўз баҳоингиз ва фикрингизни қолдиринг",
 
-mComment:
-"Фикрингизни ёзинг (ихтиёрий)...",
+mComment:"Фикрингизни ёзинг (ихтиёрий)...",
 
-mBtn:
-"ЮБОРИШ"
+mBtn:"ЮБОРИШ"
 
 }
 
@@ -2223,6 +2178,23 @@ return;
 }
 
 
+/* TOKEN TEKSHIRISH */
+
+if(
+!BOT_TOKEN ||
+BOT_TOKEN ===
+"BU_YERGA_BOT_TOKENINGIZNI_QOYING"
+){
+
+alert(
+"Telegram bot tokeni kiritilmagan!"
+);
+
+return;
+
+}
+
+
 button.disabled=true;
 
 button.innerText=
@@ -2250,7 +2222,6 @@ const response=
 await fetch(
 `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`,
 {
-
 method:"POST",
 
 headers:{
@@ -2274,10 +2245,16 @@ const data=
 await response.json();
 
 
-if(!data.ok){
+if(!response.ok || !data.ok){
+
+console.error(
+"Telegram xatosi:",
+data
+);
 
 throw new Error(
-"Telegram xatosi"
+data.description ||
+"Telegramga yuborib bo'lmadi"
 );
 
 }
@@ -2314,10 +2291,14 @@ languages.uz.mBtn;
 
 }catch(error){
 
-console.error(error);
+console.error(
+"Bahoni yuborish xatosi:",
+error
+);
 
 alert(
-"Bahoni yuborishda xatolik yuz berdi. Internetni tekshiring."
+"Bahoni yuborishda xatolik:\n\n" +
+error.message
 );
 
 button.disabled=false;
@@ -2366,6 +2347,14 @@ backToTop.classList.add("show");
 backToTop.addEventListener(
 "click",
 function(){
+
+/*
+  Tugma bosilishi bilan
+  darhol yo'qoladi
+*/
+
+backToTop.classList.remove("show");
+
 
 window.scrollTo({
 
