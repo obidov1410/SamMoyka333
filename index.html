@@ -1,1139 +1,280 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sam Moyka 333</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #020813;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /* QIZIL KO'PIK (FOAM/SNOW) CANVAS ANIMATSIYASI */
-    #foamCanvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    /* Suv tomchilari va avto foni simulyatsiyasi */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: 
-        radial-gradient(circle at 80% 10%, rgba(0, 162, 255, 0.2), transparent 40%),
-        radial-gradient(circle at 20% 50%, rgba(255, 0, 80, 0.12), transparent 40%),
-        radial-gradient(circle at 70% 80%, rgba(255, 140, 0, 0.15), transparent 40%);
-      z-index: -2;
-    }
-
-    /* HEADER */
-    header {
-      padding: 25px 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
-
-    .logo-box {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-title {
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      color: #ffffff;
-      text-shadow: 0 0 12px rgba(0, 183, 255, 0.8);
-      text-transform: uppercase;
-    }
-
-    .logo-title span {
-      color: #00b7ff;
-    }
-
-    .logo-sub {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: #7dd3fc;
-      margin-top: 4px;
-      text-transform: uppercase;
-    }
-
-    /* Til tugmalari */
-    .lang-switcher {
-      display: flex;
-      gap: 6px;
-      background: rgba(15, 23, 42, 0.7);
-      padding: 4px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: none;
-      color: #94a3b8;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.3s;
-    }
-
-    .lang-btn.active {
-      background: #0088ff;
-      color: #ffffff;
-      box-shadow: 0 0 10px rgba(0, 136, 255, 0.6);
-    }
-
-    /* HERO */
-    .hero {
-      padding: 0 5%;
-      margin-top: 10px;
-      max-width: 500px;
-    }
-
-    .hero h1 {
-      font-size: 24px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .hero h1 span {
-      color: #00b7ff;
-    }
-
-    .hero p {
-      font-size: 12px;
-      color: #94a3b8;
-      margin-top: 8px;
-      line-height: 1.5;
-    }
-
-    /* ASOSIY BO'LIMLAR TITLE */
-    .section-title {
-      text-align: center;
-      margin: 35px 0 20px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: #e2e8f0;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: "∨";
-      display: block;
-      color: #00b7ff;
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    /* CARD CONTAINER */
-    .container {
-      width: 90%;
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    /* TUGMALAR (GLASS CARDS) */
-    .menu-card {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border-radius: 20px;
-      background: rgba(10, 20, 38, 0.65);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      text-decoration: none;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-blue {
-      border: 1.5px solid rgba(0, 150, 255, 0.5);
-      box-shadow: 0 0 15px rgba(0, 150, 255, 0.2);
-    }
-    .card-blue:hover {
-      box-shadow: 0 0 25px rgba(0, 183, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .card-cyan {
-      border: 1.5px solid rgba(0, 230, 200, 0.5);
-      box-shadow: 0 0 15px rgba(0, 230, 200, 0.2);
-    }
-    .card-cyan:hover {
-      box-shadow: 0 0 25px rgba(0, 242, 195, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .card-purple {
-      border: 1.5px solid rgba(160, 60, 255, 0.5);
-      box-shadow: 0 0 15px rgba(160, 60, 255, 0.2);
-    }
-    .card-purple:hover {
-      box-shadow: 0 0 25px rgba(180, 70, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .card-orange {
-      border: 1.5px solid rgba(255, 150, 0, 0.5);
-      box-shadow: 0 0 15px rgba(255, 150, 0, 0.2);
-    }
-    .card-orange:hover {
-      box-shadow: 0 0 25px rgba(255, 170, 0, 0.6);
-      transform: translateY(-2px);
-    }
-
-    .card-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .icon-circle {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .card-blue .icon-circle { color: #00b7ff; border-color: #00b7ff; }
-    .card-cyan .icon-circle { color: #00f2c3; border-color: #00f2c3; }
-    .card-purple .icon-circle { color: #b446ff; border-color: #b446ff; }
-    .card-orange .icon-circle { color: #ffaa00; border-color: #ffaa00; }
-
-    .card-num {
-      font-size: 28px;
-      font-weight: 800;
-    }
-
-    .card-blue .card-num { color: #00b7ff; }
-    .card-cyan .card-num { color: #00f2c3; }
-    .card-purple .card-num { color: #b446ff; }
-    .card-orange .card-num { color: #ffaa00; }
-
-    .card-info {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .card-info h3 {
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .card-info p {
-      font-size: 10px;
-      color: #94a3b8;
-      line-height: 1.3;
-      max-width: 260px;
-    }
-
-    .card-arrow {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      transition: all 0.3s;
-    }
-
-    .menu-card:hover .card-arrow {
-      background: #ffffff;
-      color: #000000;
-      transform: translateX(3px);
-    }
-
-    /* BO'LIMLAR UCHUN UMUMIY DETAL BOSH-MASOFASI (ORASINI OCHISH UCHUN) */
-    .detail-section {
-      width: 90%;
-      max-width: 600px;
-      margin: 100px auto 40px; /* Orasi kengaytirildi (100px) */
-      padding-top: 30px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.15);
-    }
-
-    .detail-header {
-      border-radius: 16px;
-      padding: 18px 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 25px;
-    }
-
-    .detail-header-blue {
-      background: linear-gradient(135deg, rgba(0, 150, 255, 0.2), rgba(0, 210, 255, 0.05));
-      border: 1px solid rgba(0, 183, 255, 0.4);
-      box-shadow: 0 0 20px rgba(0, 183, 255, 0.15);
-    }
-    .detail-header-blue i { color: #00b7ff; font-size: 24px; }
-
-    .detail-header-cyan {
-      background: linear-gradient(135deg, rgba(0, 230, 200, 0.2), rgba(0, 242, 195, 0.05));
-      border: 1px solid rgba(0, 242, 195, 0.4);
-      box-shadow: 0 0 20px rgba(0, 242, 195, 0.15);
-    }
-    .detail-header-cyan i { color: #00f2c3; font-size: 24px; }
-
-    .detail-header h2 {
-      font-size: 16px;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-
-    .steps-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    .step-card {
-      background: rgba(10, 20, 38, 0.7);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 14px;
-      padding: 16px 20px;
-      transition: all 0.3s ease;
-    }
-
-    /* BO'LIM 1 STIL */
-    .step-card-blue {
-      border: 1px solid rgba(0, 183, 255, 0.25);
-      border-left: 4px solid #00b7ff;
-    }
-    .step-card-blue:hover {
-      border-color: rgba(0, 183, 255, 0.6);
-      border-left-color: #00f2c3;
-      box-shadow: 0 0 20px rgba(0, 183, 255, 0.2);
-      transform: translateX(4px);
-    }
-
-    /* BO'LIM 2 STIL */
-    .step-card-cyan {
-      border: 1px solid rgba(0, 242, 195, 0.25);
-      border-left: 4px solid #00f2c3;
-    }
-    .step-card-cyan:hover {
-      border-color: rgba(0, 242, 195, 0.6);
-      border-left-color: #00b7ff;
-      box-shadow: 0 0 20px rgba(0, 242, 195, 0.2);
-      transform: translateX(4px);
-    }
-
-    .step-title-box {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
-
-    .step-badge-blue {
-      background: rgba(0, 183, 255, 0.15);
-      color: #00b7ff;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 183, 255, 0.3);
-    }
-
-    .step-badge-cyan {
-      background: rgba(0, 242, 195, 0.15);
-      color: #00f2c3;
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      border: 1px solid rgba(0, 242, 195, 0.3);
-    }
-
-    .step-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .step-desc {
-      font-size: 12px;
-      color: #a0aec0;
-      line-height: 1.5;
-    }
-
-    /* FOOTER */
-    footer {
-      margin-top: 60px;
-      padding: 20px 5%;
-      background: rgba(3, 8, 20, 0.85);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .footer-title {
-      font-size: 11px;
-      letter-spacing: 1.5px;
-      color: #94a3b8;
-      margin-bottom: 15px;
-      text-transform: uppercase;
-    }
-
-    .footer-flex {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .contacts {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      color: #fff;
-    }
-
-    .c-icon {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-    }
-
-    .insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .tg { background: #0088cc; }
-    .phone { background: #25d366; }
-
-    .c-text span {
-      display: block;
-      font-size: 10px;
-      color: #64748b;
-    }
-
-    .c-text strong {
-      font-size: 11px;
-      color: #e2e8f0;
-    }
-
-    .qr-box {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .qr-box img {
-      width: 45px;
-      height: 45px;
-      border-radius: 4px;
-      background: #fff;
-      padding: 2px;
-    }
-
-    .qr-box p {
-      font-size: 10px;
-      color: #94a3b8;
-      line-height: 1.3;
-    }
-
-    .copyright {
-      text-align: center;
-      font-size: 10px;
-      color: #475569;
-      margin-top: 20px;
-    }
-
-    /* MODAL */
-    .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-content {
-      background: #0f172a;
-      border: 1px solid rgba(180, 70, 255, 0.5);
-      box-shadow: 0 0 30px rgba(180, 70, 255, 0.3);
-      width: 90%;
-      max-width: 380px;
-      padding: 25px;
-      border-radius: 20px;
-      text-align: center;
-      position: relative;
-      transform: scale(0.8);
-      transition: all 0.3s ease;
-    }
-
-    .modal-overlay.active .modal-content {
-      transform: scale(1);
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 12px; right: 15px;
-      font-size: 18px;
-      color: #94a3b8;
-      cursor: pointer;
-    }
-
-    .modal-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      color: #fff;
-    }
-
-    .modal-desc {
-      font-size: 12px;
-      color: #94a3b8;
-      margin-bottom: 20px;
-    }
-
-    .stars {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      direction: rtl;
-    }
-
-    .stars input { display: none; }
-    .stars label {
-      font-size: 32px;
-      color: #334155;
-      cursor: pointer;
-      transition: color 0.2s;
-    }
-
-    .stars label:hover,
-    .stars label:hover ~ label,
-    .stars input:checked ~ label {
-      color: #ffaa00;
-      text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
-    }
-
-    .comment-box {
-      width: 100%;
-      height: 80px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 10px;
-      color: #fff;
-      font-size: 12px;
-      resize: none;
-      outline: none;
-      margin-bottom: 15px;
-    }
-
-    .submit-btn {
-      width: 100%;
-      background: linear-gradient(90deg, #b446ff, #00b7ff);
-      border: none;
-      padding: 12px;
-      color: #fff;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 13px;
-      box-shadow: 0 0 15px rgba(180, 70, 255, 0.4);
-    }
-
-    @media(max-width: 480px) {
-      .card-info p { max-width: 180px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWash 333</title>
+    <!-- FontAwesome belgilari uchun -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #0077b6;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #caf0f8;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #0077b6;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #0077b6;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Baholash (Rating) uslubi */
+        .rating-stars {
+            display: flex;
+            gap: 10px;
+            font-size: 2rem;
+            color: #ccc;
+            cursor: pointer;
+            margin: 15px 0;
+        }
+
+        .rating-stars .fa-star.active {
+            color: #ffb703;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            resize: vertical;
+        }
+
+        .btn {
+            background: #0077b6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #0096c7;
+        }
+
+        /* Aloqa va Social */
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .instagram-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .qr-section {
+            text-align: center;
+        }
+
+        .qr-section img {
+            margin-top: 15px;
+            border: 5px solid #0077b6;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- QIZIL KO'PIK FON CANVAS -->
-  <canvas id="foamCanvas"></canvas>
-
-  <!-- HEADER -->
-  <header>
-    <div class="logo-box">
-      <div class="logo-title">SAM MOYKA <span>333</span></div>
-      <div class="logo-sub" id="txt-slogan">SIFATLI YUVISH – BIZNING ISHIMIZ!</div>
-    </div>
-
-    <div class="lang-switcher">
-      <button class="lang-btn active" onclick="switchLang('uz')">UZ (LOTIN)</button>
-      <button class="lang-btn" onclick="switchLang('qr')">ЎЗ (КИРИЛЛ)</button>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <h1 id="txt-welcome">XUSH <span>KELIBSIZ!</span></h1>
-    <p id="txt-desc">
-      Sam Moyka 333 xizmatidan foydalanganingiz uchun rahmat. Sifatli xizmat, zamonaviy vositalar va professional yondashuv – bizning ustuvorligimiz.
-    </p>
-  </section>
-
-  <!-- MAIN MENU -->
-  <main>
-    <div class="section-title" id="txt-sections">ASOSIY BO'LIMLAR</div>
+    <!-- Header / Navigatsiya -->
+    <header>
+        <div class="logo">EcoWash 333</div>
+        <nav>
+            <a href="#about">Biz haqimizda</a>
+            <a href="#contact">Biz bilan bog'lanish</a>
+            <a href="#feedback">Baholash</a>
+        </nav>
+    </header>
 
     <div class="container">
-      <!-- 01: Mashina Yuvish Ketma-ketligi -->
-      <a href="#sec-ketma-ketlik" class="menu-card card-blue">
-        <div class="card-left">
-          <div class="icon-circle"><i class="fa-solid fa-shower"></i></div>
-          <div class="card-num">01</div>
-          <div class="card-info">
-            <h3 id="b1-title">MASHINA YUVISH KETMA-KETLIGI</h3>
-            <p id="b1-desc">Mashina yuvish jarayonining bosqichma-bosqich ketma-ketligi bilan tanishing.</p>
-          </div>
-        </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
-      </a>
+        
+        <!-- Biz haqimizda bo'limi -->
+        <section id="about">
+            <h2>Biz haqimizda</h2>
+            <p><strong>EcoWash 333</strong> — zamonaviy o'z-o'ziga xizmat ko'rsatish avtomoykasi. Biz mijozlarimizga yuqori sifatli suv va ko'pik bosimi hamda qulay sharoitlarni taqdim etamiz. Avtomobilingizni tez, hamyonbop va sifatli yuvish uchun barcha sharoitlar yaratilgan.</p>
+        </section>
 
-      <!-- 02: Vositalar va ularning vazifalari -->
-      <a href="#sec-vositalar" class="menu-card card-cyan">
-        <div class="card-left">
-          <div class="icon-circle"><i class="fa-solid fa-spray-can"></i></div>
-          <div class="card-num">02</div>
-          <div class="card-info">
-            <h3 id="b2-title">VOSITALAR VA ULARNING VAZIFALARI</h3>
-            <p id="b2-desc">Har bir vosita nima uchun ishlatilishini va vazifasini bilib oling.</p>
-          </div>
-        </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
-      </a>
+        <!-- Baholash va Fikr qoldirish bo'limi -->
+        <section id="feedback">
+            <h2>Xizmatimizni baholang</h2>
+            <p>Fikringiz biz uchun juda muhim! Baho qo'ying va taklifingizni yuboring:</p>
+            
+            <div class="rating-stars" id="starRating">
+                <i class="fa-solid fa-star" data-value="1"></i>
+                <i class="fa-solid fa-star" data-value="2"></i>
+                <i class="fa-solid fa-star" data-value="3"></i>
+                <i class="fa-solid fa-star" data-value="4"></i>
+                <i class="fa-solid fa-star" data-value="5"></i>
+            </div>
 
-      <!-- 03: Baholash -->
-      <div class="menu-card card-purple" onclick="openRatingModal()">
-        <div class="card-left">
-          <div class="icon-circle"><i class="fa-solid fa-star"></i></div>
-          <div class="card-num">03</div>
-          <div class="card-info">
-            <h3 id="b3-title">BAHOLASH</h3>
-            <p id="b3-desc">Xizmatimiz sizga yoqdimi? Bizni baholang va fikringizni bildiring.</p>
-          </div>
-        </div>
-        <div class="card-arrow"><i class="fa-solid fa-star"></i></div>
-      </div>
+            <textarea id="feedbackText" placeholder="Fikringiz yoki taklifingizni shu yerga yozing..."></textarea>
+            <br>
+            <button class="btn" onclick="sendFeedback()">Yuborish</button>
+            <p id="statusMessage" style="margin-top: 10px; font-weight: bold;"></p>
+        </section>
 
-      <!-- 04: Biz Haqimizda -->
-      <a href="#sec-about" class="menu-card card-orange">
-        <div class="card-left">
-          <div class="icon-circle"><i class="fa-solid fa-circle-info"></i></div>
-          <div class="card-num">04</div>
-          <div class="card-info">
-            <h3 id="b4-title">BIZ HAQIMIZDA</h3>
-            <p id="b4-desc">Sam Moyka 333 haqida batafsil ma'lumot va bizning ustunliklarimiz.</p>
-          </div>
-        </div>
-        <div class="card-arrow"><i class="fa-solid fa-arrow-down"></i></div>
-      </a>
+        <!-- Biz bilan bog'lanish bo'limi -->
+        <section id="contact">
+            <h2>Biz bilan bog'lanish</h2>
+            <div class="contact-info">
+                <p><i class="fa-solid fa-phone" style="color: #0077b6;"></i> <strong>Telefon:</strong> <a href="tel:+998886791007" style="color: inherit; text-decoration: none;">+998 88 679 1007</a></p>
+                
+                <!-- Instagram Tugmasi -->
+                <a href="https://instagram.com/ecowash.333" target="_blank" class="instagram-btn">
+                    <i class="fa-brands fa-instagram fa-xl"></i> Instagram: ecowash.333
+                </a>
+            </div>
+        </section>
+
+        <!-- QR Kod Bo'limi -->
+        <section class="qr-section">
+            <h2>Bizning Sahifa QR Kodi</h2>
+            <p>Ushbu QR kodni skanerlab, do'stlaringiz bilan ulashing:</p>
+            <img id="qrCodeImage" src="" alt="EcoWash 333 QR Code">
+        </section>
+
     </div>
 
-    <!-- BO'LIM 01: MASHINA YUVISH KETMA-KETLIGI -->
-    <section class="detail-section" id="sec-ketma-ketlik">
-      <div class="detail-header detail-header-blue">
-        <i class="fa-solid fa-car-wash"></i>
-        <h2 id="seq-header">🚗 Sam Moyka 333 — Mashina yuvish ketma-ketligi</h2>
-      </div>
+    <script>
+        // --- 1. Yulduzchalar orqali baholash mantigi ---
+        let selectedRating = 0;
+        const stars = document.querySelectorAll('#starRating .fa-star');
 
-      <div class="steps-grid">
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">1️⃣</span>
-            <div class="step-title" id="s1-t">Quruq kirni suv bilan ketkazish 💦</div>
-          </div>
-          <div class="step-desc" id="s1-d">Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.</div>
-        </div>
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                selectedRating = star.getAttribute('data-value');
+                updateStars(selectedRating);
+            });
+        });
 
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">2️⃣</span>
-            <div class="step-title" id="s2-t">Aktivniy pena 🫧</div>
-          </div>
-          <div class="step-desc" id="s2-d">Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.</div>
-        </div>
-
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">3️⃣</span>
-            <div class="step-title" id="s3-t">Kutish ⏱️</div>
-          </div>
-          <div class="step-desc" id="s3-d">Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.</div>
-        </div>
-
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">4️⃣</span>
-            <div class="step-title" id="s4-t">Gubka / cho‘tka bilan yuvish 🧽</div>
-          </div>
-          <div class="step-desc" id="s4-d">Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.</div>
-        </div>
-
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">5️⃣</span>
-            <div class="step-title" id="s5-t">Toza suv bilan chayish 🚿</div>
-          </div>
-          <div class="step-desc" id="s5-d">Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.</div>
-        </div>
-
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">6️⃣</span>
-            <div class="step-title" id="s6-t">Vosk ✨</div>
-          </div>
-          <div class="step-desc" id="s6-d">Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.</div>
-        </div>
-
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">7️⃣</span>
-            <div class="step-title" id="s7-t">Nano 💎</div>
-          </div>
-          <div class="step-desc" id="s7-d">Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.</div>
-        </div>
-
-        <div class="step-card step-card-blue">
-          <div class="step-title-box">
-            <span class="step-badge-blue">8️⃣</span>
-            <div class="step-title" id="s8-t">Yakuniy chayish va quritish 🌟</div>
-          </div>
-          <div class="step-desc" id="s8-d">Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BO'LIM 02: VOSITALAR VA ULARNING VAZIFALARI -->
-    <section class="detail-section" id="sec-vositalar">
-      <div class="detail-header detail-header-cyan">
-        <i class="fa-solid fa-pump-soap"></i>
-        <h2 id="v-header">🧴 Vositalar va ularning vazifalari</h2>
-      </div>
-
-      <div class="steps-grid">
-        <div class="step-card step-card-cyan">
-          <div class="step-title-box">
-            <span class="step-badge-cyan">1</span>
-            <div class="step-title" id="v1-t">🫧 Pena</div>
-          </div>
-          <div class="step-desc" id="v1-d">Oddiy ko‘pik — mashina yuzasidagi chang va kirlarni yumshatish hamda yuvishga tayyorlash uchun ishlatiladi.</div>
-        </div>
-
-        <div class="step-card step-card-cyan">
-          <div class="step-title-box">
-            <span class="step-badge-cyan">2</span>
-            <div class="step-title" id="v2-t">⚡ Aktivniy pena</div>
-          </div>
-          <div class="step-desc" id="v2-d">Kuchliroq tozalovchi vosita. Yog‘, yo‘l kiri va boshqa qattiqroq kirlarni yumshatishga yordam beradi.</div>
-        </div>
-
-        <div class="step-card step-card-cyan">
-          <div class="step-title-box">
-            <span class="step-badge-cyan">3</span>
-            <div class="step-title" id="v3-t">✨ Vosk</div>
-          </div>
-          <div class="step-desc" id="v3-d">Mashina kuzoviga yaltiroqlik beradi va suvning yuzada kamroq turishiga yordam beradi.</div>
-        </div>
-
-        <div class="step-card step-card-cyan">
-          <div class="step-title-box">
-            <span class="step-badge-cyan">4</span>
-            <div class="step-title" id="v4-t">💎 Nano</div>
-          </div>
-          <div class="step-desc" id="v4-d">Kuzovga himoya xususiyati berib, yaltiroqlikni uzoqroq saqlashga yordam beradi.</div>
-        </div>
-
-        <div class="step-card step-card-cyan">
-          <div class="step-title-box">
-            <span class="step-badge-cyan">5</span>
-            <div class="step-title" id="v5-t">💨 Yuqori bosimli havo purkagich (kompressor)</div>
-          </div>
-          <div class="step-desc" id="v5-d">Mashinaning suv qolib ketadigan joylarini, masalan, oynalar atrofi, panjara, oynalar oralig‘i va boshqa qismlarni havoni kuchli bosim bilan purkab quritishga yordam beradi.</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-title" id="txt-contact">BIZ BILAN BOG'LANING</div>
-
-    <div class="footer-flex">
-      <div class="contacts">
-        <a href="https://instagram.com/sam_moyka" target="_blank" class="contact-item">
-          <div class="c-icon insta"><i class="fa-brands fa-instagram"></i></div>
-          <div class="c-text">
-            <span>Instagram</span>
-            <strong>@sam_moyka</strong>
-          </div>
-        </a>
-
-        <a href="https://t.me/sam_moyka" target="_blank" class="contact-item">
-          <div class="c-icon tg"><i class="fa-paper-plane"></i></div>
-          <div class="c-text">
-            <span>Telegram</span>
-            <strong>@sam_moyka</strong>
-          </div>
-        </a>
-
-        <div class="contact-item">
-          <div class="c-icon phone"><i class="fa-solid fa-phone"></i></div>
-          <div class="c-text">
-            <span id="txt-phone">Telefon</span>
-            <strong>+998 90 123 45 67</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="qr-box">
-        <i class="fa-solid fa-mobile-screen-button" style="font-size: 20px; color: #00b7ff;"></i>
-        <p id="txt-qr">QR kodni skaner qiling<br>va saytga kiring!</p>
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://obidov1410.github.io/SamMoyka333/" alt="QR">
-      </div>
-    </div>
-
-    <div class="copyright" id="txt-copy">
-      © 2026 Sam Moyka 333. Barcha huquqlar himoyalangan.
-    </div>
-  </footer>
-
-  <!-- MODAL POP-UP -->
-  <div class="modal-overlay" id="ratingModal">
-    <div class="modal-content">
-      <span class="close-btn" onclick="closeRatingModal()">&times;</span>
-      <div class="modal-title" id="m-title">Xizmatni baholang</div>
-      <div class="modal-desc" id="m-desc">O'z bahoingiz va fikringizni qoldiring</div>
-
-      <form id="ratingForm" onsubmit="submitRating(event)">
-        <div class="stars">
-          <input type="radio" id="star5" name="rating" value="5" required/><label for="star5">★</label>
-          <input type="radio" id="star4" name="rating" value="4"/><label for="star4">★</label>
-          <input type="radio" id="star3" name="rating" value="3"/><label for="star3">★</label>
-          <input type="radio" id="star2" name="rating" value="2"/><label for="star2">★</label>
-          <input type="radio" id="star1" name="rating" value="1"/><label for="star1">★</label>
-        </div>
-
-        <textarea class="comment-box" id="m-comment" placeholder="Fikringizni yozing (ixtiyoriy)..."></textarea>
-        <button type="submit" class="submit-btn" id="m-btn">YUBORISH</button>
-      </form>
-    </div>
-  </div>
-
-  <script>
-    // Til Ma'lumotlari
-    const languages = {
-      uz: {
-        slogan: "SIFATLI YUVISH – BIZNING ISHIMIZ!",
-        welcome: "XUSH <span>KELIBSIZ!</span>",
-        desc: "Sam Moyka 333 xizmatidan foydalanganingiz uchun rahmat. Sifatli xizmat, zamonaviy vositalar va professional yondashuv – bizning ustuvorligimiz.",
-        sections: "ASOSIY BO'LIMLAR",
-        b1Title: "MASHINA YUVISH KETMA-KETLIGI",
-        b1Desc: "Mashina yuvish jarayonining bosqichma-bosqich ketma-ketligi bilan tanishing.",
-        b2Title: "VOSITALAR VA ULARNING VAZIFALARI",
-        b2Desc: "Har bir vosita nima uchun ishlatilishini va vazifasini bilib oling.",
-        b3Title: "BAHOLASH",
-        b3Desc: "Xizmatimiz sizga yoqdimi? Bizni baholang va fikringizni bildiring.",
-        b4Title: "BIZ HAQIMIZDA",
-        b4Desc: "Sam Moyka 333 haqida batafsil ma'lumot va bizning ustunliklarimiz.",
-        seqHeader: "🚗 Sam Moyka 333 — Mashina yuvish ketma-ketligi",
-        s1t: "Quruq kirni suv bilan ketkazish 💦",
-        s1d: "Avval mashinaning ustidagi chang, qum va yirik kirlar kuchli suv bilan chayiladi.",
-        s2t: "Aktivniy pena 🫧",
-        s2d: "Mashina maxsus aktiv ko‘pik bilan to‘liq qoplanadi. Pena kir va yog‘larni yumshatadi.",
-        s3t: "Kutish ⏱️",
-        s3d: "Pena bir necha daqiqa ishlashi uchun qoldiriladi. Qurib qolishiga yo‘l qo‘yilmaydi.",
-        s4t: "Gubka / cho‘tka bilan yuvish 🧽",
-        s4d: "Yumshagan kirlar gubka yoki yumshoq cho‘tka yordamida ehtiyotkorlik bilan tozalanadi.",
-        s5t: "Toza suv bilan chayish 🚿",
-        s5d: "Barcha pena va kirlar yuqori bosimli toza suv bilan yaxshilab yuvib tashlanadi.",
-        s6t: "Vosk ✨",
-        s6d: "Vosk qo‘llanadi. U kuzovga yaltiroqlik beradi va suvning tezroq oqib tushishiga yordam beradi.",
-        s7t: "Nano 💎",
-        s7d: "Nano vosita kuzovga qo‘llanib, himoya va yaltiroqlikni kuchaytiradi.",
-        s8t: "Yakuniy chayish va quritish 🌟",
-        s8d: "Mashina oxirgi marta chayiladi va suv tomchilari mikrofiber latta bilan artiladi.",
-        vHeader: "🧴 Vositalar va ularning vazifalari",
-        v1t: "🫧 Pena",
-        v1d: "Oddiy ko‘pik — mashina yuzasidagi chang va kirlarni yumshatish hamda yuvishga tayyorlash uchun ishlatiladi.",
-        v2t: "⚡ Aktivniy pena",
-        v2d: "Kuchliroq tozalovchi vosita. Yog‘, yo‘l kiri va boshqa qattiqroq kirlarni yumshatishga yordam beradi.",
-        v3t: "✨ Vosk",
-        v3d: "Mashina kuzoviga yaltiroqlik beradi va suvning yuzada kamroq turishiga yordam beradi.",
-        v4t: "💎 Nano",
-        v4d: "Kuzovga himoya xususiyati berib, yaltiroqlikni uzoqroq saqlashga yordam beradi.",
-        v5t: "💨 Yuqori bosimli havo purkagich (kompressor)",
-        v5d: "Mashinaning suv qolib ketadigan joylarini, masalan, oynalar atrofi, panjara, oynalar oralig‘i va boshqa qismlarni havoni kuchli bosim bilan purkab quritishga yordam beradi.",
-        contact: "BIZ BILAN BOG'LANING",
-        phone: "Telefon",
-        qr: "QR kodni skaner qiling<br>va saytga kiring!",
-        copy: "© 2026 Sam Moyka 333. Barcha huquqlar himoyalangan.",
-        mTitle: "Xizmatni baholang",
-        mDesc: "O'z bahoingiz va fikringizni qoldiring",
-        mComment: "Fikringizni yozing (ixtiyoriy)...",
-        mBtn: "YUBORISH"
-      },
-      qr: {
-        slogan: "СИФАТЛИ ЮВИШ – БИЗНИНГ ИШИМИЗ!",
-        welcome: "ХУШ <span>КЕЛИБСИЗ!</span>",
-        desc: "Сам Мойка 333 хизматидан фойдаланганингиз учун раҳмат. Сифатли хизмат, замонавий воситалар ва профессионал ёндашув – бизнинг устуворлигимиз.",
-        sections: "АСОСИЙ БЎЛИМЛАР",
-        b1Title: "МАШИНА ЮВИШ КЕТМА-КЕТЛИГИ",
-        b1Desc: "Машина ювиш жараёнининг босқичма-босқич кетма-кетлиги билан танишинг.",
-        b2Title: "ВОСИТАЛАР ВА УЛАРНИНГ ВАЗИФАЛАРИ",
-        b2Desc: "Ҳар бир восита нима учун ишлатилишини ва вазифасини билиб олинг.",
-        b3Title: "БАҲОЛАШ",
-        b3Desc: "Хизматимиз сизга ёқдими? Бизни баҳоланг ва фикрингизни билдиринг.",
-        b4Title: "БИЗ ҲАҚИМИЗДА",
-        b4Desc: "Сам Мойка 333 ҳақида батафсил маълумот ва бизнинг устунликларимиз.",
-        seqHeader: "🚗 Сам Мойка 333 — Машина ювиш кетма-кетлиги",
-        s1t: "Қуруқ кирни сув билан кетказиш 💦",
-        s1d: "Аввал машинанинг устидаги чанг, қум ва йирик кирлар кучли сув билан чайилади.",
-        s2t: "Аксивний пена 🫧",
-        s2d: "Машина махсус актив кўпик билан тўлиқ қопланади. Пена кир ва ёғларни юмшатади.",
-        s3t: "Кутиш ⏱️",
-        s3d: "Пена бир неча дақиқа ишлаши учун қолдирилади. Қуриб қолишига йўл қўйилмайди.",
-        s4t: "Губка / чўтка билан ювиш 🧽",
-        s4d: "Юмшаган кирлар губка ёки юмшоқ чўтка ёрдамида эҳтиёткорлик билан тозаланади.",
-        s5t: "Тоза сув билан чайиш 🚿",
-        s5d: "Барча пена ва кирлар юқори босимли тоза сув билан яхшилаб ювиб ташланади.",
-        s6t: "Воск ✨",
-        s6d: "Воск қўлланади. У кузовга ялтироқлик беради ва сувнинг тезроқ оқиб тушишига ёрдам беради.",
-        s7t: "Нано 💎",
-        s7d: "Нано восита кузовга қўлланиб, ҳимоя ва ялтироқликни кучайтиради.",
-        s8t: "Якуний чайиш ва қуритиш 🌟",
-        s8d: "Машина охирги марта чайилади ва сув томчилари микрофибер латта билан артилади.",
-        vHeader: "🧴 Воситалар ва уларнинг вазифалари",
-        v1t: "🫧 Пена",
-        v1d: "Оддий кўпик — машина юзидаги чанг ва кирларни юмшатиш ҳамда ювишга тайёрлаш учун ишлатилади.",
-        v2t: "⚡ Активний пена",
-        v2d: "Кучлироқ тозаловчи восита. Ёғ, йўл кири ва бошқа қаттиқроқ кирларни юмшатишга ёрдам беради.",
-        v3t: "✨ Воск",
-        v3d: "Машина кузовига ялтироқлик беради ва сувнинг юзада камроқ туришига ёрдам беради.",
-        v4t: "💎 Нано",
-        v4d: "Кузовга ҳимоя хусусияти бериб, ялтироқликни узоқроқ сақлашга ёрдам беради.",
-        v5t: "💨 Юқори босимли ҳаво пуркагич (компрессор)",
-        v5d: "Машинанинг сув қолиб кетадиган жойларини, масалан, ойналар атрофи, панжара, ойналар оралиғи ва бошқа қисмларни ҳавони кучли босим билан пуркаб қуритишга ёрдам беради.",
-        contact: "БИЗ БИЛАН БОҒЛАНИНГ",
-        phone: "Телефон",
-        qr: "QR кодни сканер қилинг<br>ва сайтга киринг!",
-        copy: "© 2026 Сам Мойка 333. Барча ҳуқуқлар ҳимояланган.",
-        mTitle: "Хизматни баҳоланг",
-        mDesc: "Ўз баҳоингиз ва фикрингизни қолдиринг",
-        mComment: "Фикрингизни ёзинг (ихтиёрий)...",
-        mBtn: "ЮБОРИШ"
-      }
-    };
-
-    function switchLang(lang) {
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-      if(lang === 'uz') document.querySelectorAll('.lang-btn')[0].classList.add('active');
-      else document.querySelectorAll('.lang-btn')[1].classList.add('active');
-
-      document.getElementById('txt-slogan').innerText = languages[lang].slogan;
-      document.getElementById('txt-welcome').innerHTML = languages[lang].welcome;
-      document.getElementById('txt-desc').innerText = languages[lang].desc;
-      document.getElementById('txt-sections').innerText = languages[lang].sections;
-
-      document.getElementById('b1-title').innerText = languages[lang].b1Title;
-      document.getElementById('b1-desc').innerText = languages[lang].b1Desc;
-      document.getElementById('b2-title').innerText = languages[lang].b2Title;
-      document.getElementById('b2-desc').innerText = languages[lang].b2Desc;
-      document.getElementById('b3-title').innerText = languages[lang].b3Title;
-      document.getElementById('b3-desc').innerText = languages[lang].b3Desc;
-      document.getElementById('b4-title').innerText = languages[lang].b4Title;
-      document.getElementById('b4-desc').innerText = languages[lang].b4Desc;
-
-      document.getElementById('seq-header').innerText = languages[lang].seqHeader;
-      document.getElementById('s1-t').innerText = languages[lang].s1t;
-      document.getElementById('s1-d').innerText = languages[lang].s1d;
-      document.getElementById('s2-t').innerText = languages[lang].s2t;
-      document.getElementById('s2-d').innerText = languages[lang].s2d;
-      document.getElementById('s3-t').innerText = languages[lang].s3t;
-      document.getElementById('s3-d').innerText = languages[lang].s3d;
-      document.getElementById('s4-t').innerText = languages[lang].s4t;
-      document.getElementById('s4-d').innerText = languages[lang].s4d;
-      document.getElementById('s5-t').innerText = languages[lang].s5t;
-      document.getElementById('s5-d').innerText = languages[lang].s5d;
-      document.getElementById('s6-t').innerText = languages[lang].s6t;
-      document.getElementById('s6-d').innerText = languages[lang].s6d;
-      document.getElementById('s7-t').innerText = languages[lang].s7t;
-      document.getElementById('s7-d').innerText = languages[lang].s7d;
-      document.getElementById('s8-t').innerText = languages[lang].s8t;
-      document.getElementById('s8-d').innerText = languages[lang].s8d;
-
-      document.getElementById('v-header').innerText = languages[lang].vHeader;
-      document.getElementById('v1-t').innerText = languages[lang].v1t;
-      document.getElementById('v1-d').innerText = languages[lang].v1d;
-      document.getElementById('v2-t').innerText = languages[lang].v2t;
-      document.getElementById('v2-d').innerText = languages[lang].v2d;
-      document.getElementById('v3-t').innerText = languages[lang].v3t;
-      document.getElementById('v3-d').innerText = languages[lang].v3d;
-      document.getElementById('v4-t').innerText = languages[lang].v4t;
-      document.getElementById('v4-d').innerText = languages[lang].v4d;
-      document.getElementById('v5-t').innerText = languages[lang].v5t;
-      document.getElementById('v5-d').innerText = languages[lang].v5d;
-
-      document.getElementById('txt-contact').innerText = languages[lang].contact;
-      document.getElementById('txt-phone').innerText = languages[lang].phone;
-      document.getElementById('txt-qr').innerHTML = languages[lang].qr;
-      document.getElementById('txt-copy').innerText = languages[lang].copy;
-
-      document.getElementById('m-title').innerText = languages[lang].mTitle;
-      document.getElementById('m-desc').innerText = languages[lang].mDesc;
-      document.getElementById('m-comment').placeholder = languages[lang].mComment;
-      document.getElementById('m-btn').innerText = languages[lang].mBtn;
-    }
-
-    function openRatingModal() {
-      document.getElementById('ratingModal').classList.add('active');
-    }
-
-    function closeRatingModal() {
-      document.getElementById('ratingModal').classList.remove('active');
-    }
-
-    function submitRating(e) {
-      e.preventDefault();
-      alert("Rahmat! Bahoyingiz qabul qilindi.");
-      closeRatingModal();
-    }
-
-    /* QIZIL KO'PIK (RED FOAM/SNOW) CANVAS ANIMATSIYASI */
-    const canvas = document.getElementById('foamCanvas');
-    const ctx = canvas.getContext('2d');
-
-    let particles = [];
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    class RedFoamParticle {
-      constructor() {
-        this.reset();
-      }
-
-      reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = -20;
-        this.radius = Math.random() * 3 + 1.5; // Ko'pik tomchisi hajmi
-        this.speedY = Math.random() * 1.2 + 0.5; // Tushish tezligi
-        this.speedX = Math.sin(Math.random() * Math.PI) * 0.5;
-        this.opacity = Math.random() * 0.5 + 0.2; // Yumshoq shaffoflik
-      }
-
-      update() {
-        this.y += this.speedY;
-        this.x += Math.sin(this.y * 0.02) * 0.5;
-
-        if (this.y > canvas.height + 10) {
-          this.reset();
+        function updateStars(rating) {
+            stars.forEach(star => {
+                if (star.getAttribute('data-value') <= rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
         }
-      }
 
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        // Qizil neonaviy yog'du
-        ctx.fillStyle = `rgba(255, 45, 85, ${this.opacity})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = "rgba(255, 0, 75, 0.8)";
-        ctx.fill();
-        ctx.closePath();
-      }
-    }
+        // --- 2. Fikr va Baholarni Telegram Bot orqali yuborish ---
+        function sendFeedback() {
+            const text = document.getElementById('feedbackText').value;
+            const statusMessage = document.getElementById('statusMessage');
 
-    // 40 ta nafis ko'pik tomchisi yaratish
-    for (let i = 0; i < 40; i++) {
-      particles.push(new RedFoamParticle());
-    }
+            if (selectedRating === 0) {
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Iltimos, avval yulduzchalar orqali baho tanlang!";
+                return;
+            }
 
-    function animateFoam() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-      requestAnimationFrame(animateFoam);
-    }
+            // Kiritilgan Telegram Bot ma'lumotlari
+            const BOT_TOKEN = "8930316035:AAGgTst946gpMwuY0EqHjVUcbRJxWWaKkbg"; 
+            const CHAT_ID = "7041471070";
 
-    animateFoam();
-  </script>
+            const message = `🚗 *EcoWash 333 — Yangi Fikr!*\n\n⭐ *Baho:* ${selectedRating} / 5\n💬 *Fikr:* ${text || 'Fikr bildirilmadi'}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    statusMessage.style.color = "green";
+                    statusMessage.innerText = "Rahmat! Fikringiz va bahoingiz yuborildi.";
+                    document.getElementById('feedbackText').value = '';
+                    selectedRating = 0;
+                    updateStars(0);
+                } else {
+                    statusMessage.style.color = "red";
+                    statusMessage.innerText = "Xatolik yuz berdi. Telegram botga /start bosganingizni tekshiring.";
+                }
+            })
+            .catch(err => {
+                statusMessage.style.color = "red";
+                statusMessage.innerText = "Tarmoqda xatolik yuz berdi. Qayta urinib ko'ring.";
+            });
+        }
+
+        // --- 3. QR Kodni joriy sahifa linkiga moslash ---
+        window.onload = function() {
+            const currentUrl = encodeURIComponent(window.location.href);
+            document.getElementById('qrCodeImage').src = `https://quickchart.io/qr?text=${currentUrl}&size=200`;
+        };
+    </script>
 </body>
 </html>
